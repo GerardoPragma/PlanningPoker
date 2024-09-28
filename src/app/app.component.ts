@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PlanningPoker';
+  isLoading = true;
+
+  constructor(private router: Router) {}
+
+  // Simular una carga de 2 segundos
+  ngOnInit() {
+    setTimeout(() => {
+      this.isLoading = false;
+      this.router.navigate(['/create-game']);
+    }, 2000);
+  }
 }

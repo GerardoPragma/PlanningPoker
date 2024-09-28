@@ -1,0 +1,70 @@
+/* game-name.component.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajuste a altura conforme necessário */
+  }
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr; /* One column */
+    gap: 5px; /* Adjust the gap as needed */
+  }
+  
+  label {
+    text-align: left;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'MyCustomFont', sans-serif;
+  }
+  
+  input {
+    padding: 8px;
+    border: 1px solid #6429CD;
+    border-radius: 30px;
+    width: 220px;
+    background-color: transparent;
+    margin-bottom: 10px;
+    font-family: 'MyCustomFont', sans-serif;
+    color: white;
+  }
+
+  input:focus {
+    outline: 0;
+    box-shadow: 0;
+  }
+
+  .formButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  button {
+    padding: 8px 20px 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: fit-content;
+    font-family: 'MyCustomFont', sans-serif;
+    color: #330072;
+    font-weight: bold;
+  }
+
+  button[disabled] {
+    /* Estilos para el botón deshabilitado */
+    color: rgb(140, 140, 140);
+    font-weight: bold;
+    cursor: not-allowed;
+  }

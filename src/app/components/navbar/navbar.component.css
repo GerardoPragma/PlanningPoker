@@ -1,0 +1,72 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Repetir la columna 3 veces para mejor legibilidad */
+  align-items: center;
+  gap: 1rem; /* Espacio entre elementos */
+  padding-top: 30px;
+}
+
+.grid-container {
+  width: 100%; /* Asegurarse que ocupe todo el ancho del navbar */
+}
+
+.logo {
+  padding-left: 70px;
+  display: flex;
+  align-items: center;
+}
+  
+.text1 {
+  font-weight: bold;
+  font-family: 'MyCustomFont', sans-serif;
+  color: white;
+  margin-left: 10px;
+}
+
+.text2 {
+  font-weight: bold;
+  font-family: 'MyCustomFont', sans-serif;
+  color: white;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.invitePlayer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  position: relative;
+  right: 70px;
+  background-color: transparent;
+  padding: 4px 10px 4px 10px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border: 1px solid white;
+  border-radius: 30px;
+  cursor: pointer;
+  width: fit-content;
+  font-family: 'MyCustomFont', sans-serif;
+  color: white;
+  font-weight: bold;
+}
+
+  @media (max-width: 768px) {
+    .navbar {
+      grid-template-columns: 1fr; /* Una sola columna para pantallas pequeñas */
+      justify-items: center; /* Centrar los elementos */
+    }
+  
+    .logo {
+      text-align: center; /* Centrar el logo */
+    }
+  
+    .invitePlayer {
+      justify-content: center; /* Centrar el botón */
+    }
+  }

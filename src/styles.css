@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(
+      #330072,
+      rgb(140, 140, 140)
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('../public/assets/fonts/Poppins-Regular.ttf') format('truetype');
+}
