@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GameService } from '../../services/game.service';
@@ -10,6 +10,7 @@ import { GameService } from '../../services/game.service';
 })
 export class CreateGameComponent implements OnInit {
   createGameForm: FormGroup;
+  @Output() abrirModal = new EventEmitter<void>();
 
   constructor(private fb: FormBuilder, private router: Router, private gameService: GameService) {
     this.createGameForm = this.fb.group({
@@ -32,9 +33,9 @@ export class CreateGameComponent implements OnInit {
   }
 
   onSubmit() {
-    // Aquí puedes hacer algo con el nombre de la partida, por ejemplo, enviarlo a un servicio
-    console.log('Nombre de la partida:', this.createGameForm.value.nombrePartida);
+    //console.log('Nombre de la partida:', this.createGameForm.value.nombrePartida);
     this.gameService.changeGameName(this.createGameForm.value.nombrePartida);
-    this.router.navigate(['/select-role']);
+    this.router.navigate(['/game-table']);
+    this.abrirModal.emit();
   }
 }

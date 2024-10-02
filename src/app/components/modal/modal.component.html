@@ -1,1 +1,17 @@
-<p>modal works!</p>
+<div *ngIf="visible" class="modal" [ngClass]="{'show': visible}">
+    <div class="modal-content">
+      <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+        <label for="nombre">Tu nombre</label>
+        <input class="input" type="text" id="nombre" formControlName="nombreUsuario">
+        <div class="radio-buttons">
+          <label>Jugador</label>
+          <input type="radio" formControlName="seleccionRol" value="jugador">          
+          <label>Espectador</label>
+          <input type="radio" formControlName="seleccionRol" value="espectador">
+        </div>
+        <div class="formButton">
+          <button type="submit" [disabled]="!createUserForm.valid">Continuar</button>
+        </div>
+      </form>
+    </div>
+</div>

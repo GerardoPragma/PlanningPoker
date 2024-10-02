@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CreateGameComponent } from './components/create-game/create-game.component';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +9,26 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'PlanningPoker';
-  isLoading = true;
+  modalVisible: boolean = false;
 
   constructor(private router: Router) {}
 
-  // Simular una carga de 2 segundos
-  ngOnInit() {
+  public takeOffLoadingPage(): void {
     setTimeout(() => {
-      this.isLoading = false;
       this.router.navigate(['/create-game']);
     }, 2000);
+  }
+
+  ngOnInit() {
+    this.takeOffLoadingPage();
+  }
+
+  onActivate(component: any) {
+    if (component instanceof CreateGameComponent) {      
+      component.abrirModal.subscribe(() => {
+        console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAA')
+        this.modalVisible = true;
+      });
+    }
   }
 }

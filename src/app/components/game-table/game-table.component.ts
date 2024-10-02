@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-game-table',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './game-table.component.css'
 })
 export class GameTableComponent {
+  @Input() visible: boolean = true;
 
 }

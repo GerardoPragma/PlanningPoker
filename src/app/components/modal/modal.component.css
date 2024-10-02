@@ -1,0 +1,145 @@
+.modal {
+    display: none; /* Ocultamos la modal por defecto */
+    position: fixed; /* Posicionamos la modal en una posición fija */
+    z-index: 9999; /* Aseguramos que la modal esté encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite el scroll si el contenido es muy grande */
+    background-color: #00000066; /* Fondo semitransparente */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+  }
+
+  /* Mostrar la modal */
+  .show {
+    display: flex;
+  }
+  
+  .modal-content {
+    background-color: #1F0D3F;
+    margin: 15% auto; /* Centramos la modal verticalmente */
+    padding: 40px;
+    border: 3px solid #733cd3;
+    box-shadow: 0 0 10px #531DBC;
+    animation: glow 1s infinite alternate;
+    border-radius: 25px;
+    width: 26%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 180px;
+  }
+
+  form {
+    flex-direction: column;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr; /* One column */
+    gap: 1px; /* Adjust the gap as needed */
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  label {
+    text-align: left;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'MyCustomFont', sans-serif;
+  }
+  
+  .input {
+    padding: 8px;
+    border: 1px solid #6429CD;
+    border-radius: 30px;
+    width: 230px;
+    background-color: transparent;
+    margin-bottom: 10px;
+    font-family: 'MyCustomFont', sans-serif;
+    color: white;
+  }
+  .input:focus {
+    outline: 0;
+    box-shadow: 0;
+  }
+
+  /* Radio button */
+  .radio-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+  }
+  
+  .radio-buttons label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    margin-left: 30px;
+  }
+
+  .radio-buttons input[type="radio"] {
+    border: 2px solid #6429CD;
+    border-radius: 50%;
+    appearance: none;
+    padding: 5px;
+  }
+  
+  .radio-buttons input[type="radio"]::after {
+    content: "";
+    display: block;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: #1F0D3F;
+    transition: background-color 0.3s ease; /* Animación al seleccionar */
+  }
+  
+  .radio-buttons input[type="radio"]:checked::after {
+    background-color: #6429CD; /* Cambia el color de fondo al seleccionar */
+  }
+
+  /* Button */
+  .formButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+  }
+  
+  button {
+    padding: 8px 20px 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: fit-content;
+    font-family: 'MyCustomFont', sans-serif;
+    color: #330072;
+    font-weight: bold;
+  }
+
+  button[disabled] {
+    /* Estilos para el botón deshabilitado */
+    color: rgb(140, 140, 140);
+    font-weight: bold;
+    cursor: not-allowed;
+  }
