@@ -31,12 +31,28 @@
   font-family: 'MyCustomFont', sans-serif;
   color: white;
   text-align: center;
-  margin-left: 10px;
 }
 
 .invitePlayer {
   display: flex;
   justify-content: flex-end;
+}
+
+.circular-element {
+  color: #330072;
+  font-weight: bold;
+  font-family: 'MyCustomFont', sans-serif;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #BDBDFF; /* Change the background color as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-right: 10px; /* Adjust the margin as needed */
+  right: 80px;
+  position: relative;
 }
 
 button {

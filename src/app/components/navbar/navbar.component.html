@@ -3,16 +3,19 @@
         <div>
             <img height="50" src="assets/images/otrologo.png" alt="Cargando...">
         </div>
-        <span class="text1">Crear Partida</span>
+        <span *ngIf="currentShowCrearPartida" class="text1">Crear Partida</span>
       </div>
 
       <div class="grid-container text2">
-        <div *ngIf="showGameName">
+        <div *ngIf="currentShowEspectatorElements">
           {{ currentGameName }}
         </div>
       </div>
 
       <div class="grid-container invitePlayer">
-        <button>Invitar Jugadores</button>
+        <div *ngIf="currentShowEspectatorElements" class="circular-element">
+          {{ currentUserNameInitials }}
+        </div>
+        <button *ngIf="!currentShowCrearPartida" >Invitar Jugadores</button>
       </div>
 </nav>

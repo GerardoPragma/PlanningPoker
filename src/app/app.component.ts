@@ -26,7 +26,6 @@ export class AppComponent {
   onActivate(component: any) {
     if (component instanceof CreateGameComponent) {      
       component.abrirModal.subscribe(() => {
-        console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAA')
         this.modalVisible = true;
       });
     }

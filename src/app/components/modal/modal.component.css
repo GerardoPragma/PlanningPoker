@@ -26,7 +26,7 @@
     box-shadow: 0 0 10px #531DBC;
     animation: glow 1s infinite alternate;
     border-radius: 25px;
-    width: 26%;
+    width: 24%;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -97,14 +97,14 @@
     border: 2px solid #6429CD;
     border-radius: 50%;
     appearance: none;
-    padding: 5px;
+    padding: 4.4px;
   }
   
   .radio-buttons input[type="radio"]::after {
     content: "";
     display: block;
-    width: 13px;
-    height: 13px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
     background-color: #1F0D3F;
     transition: background-color 0.3s ease; /* Animación al seleccionar */

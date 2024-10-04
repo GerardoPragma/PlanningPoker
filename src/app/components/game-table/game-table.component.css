@@ -1,69 +1,121 @@
 .poker-table-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .poker-table {
-    position: relative;
-    width: 450px;
-    height: 250px;
-    border-radius: 300px;
-  }
-  
-  .table-felt {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-  }
-  
-  .outer-border, .middle-border, .inner-border {
-    position: absolute;
-    border-radius: inherit;
-    box-sizing: border-box;
-    border-style: solid; /* Asegurarse que todos los bordes sean sólidos */
-  }
-  
-  .outer-border {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-width: 2px;
-    border-color: #531DBC;
-    box-shadow: 0 0 2px #6429CD;
-  }
-  
-  .middle-border {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    height: 90%;
-    border-width: 2px;
-    border-color: #6429CD;
-    box-shadow: 0 0 2px #6429CD;
-  }
-  
-  .inner-border {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    border-width: 2px;
-    border-color: #440099;
-    background-color: #1F0D3F;
-    box-shadow: 0 0 2px #6429CD;
-  }
-  
-  .center-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.table-space {
+  flex-grow: 0.75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 124px;
+}
+
+.poker-table {
+  position: relative;
+  width: 550px;
+  height: 300px;
+  border-radius: 300px;
+}
+
+.table-felt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.outer-border, .middle-border, .inner-border {
+  position: absolute;
+  border-radius: inherit;
+  box-sizing: border-box;
+  border-style: solid; /* Asegurarse que todos los bordes sean sólidos */
+}
+
+.outer-border {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: 2px;
+  border-color: #6E3FCB;
+  box-shadow: 0 0 2px #6429CD;
+}
+
+.middle-border {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 87%;
+  height: 87%;
+  border-width: 2px;
+  border-color: #8D6FE0;
+  box-shadow: 0 0 2px #6429CD;
+}
+
+.inner-border {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-width: 2px;
+  border-color: #471C8E;
+  background-color: #2A0F52;
+  box-shadow: 0 0 2px #6429CD;
+}
+
+.center-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* tarjetas */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Adjust column widths as needed */
+  gap: 20px; /* Adjust gap between columns */
+  grid-template-rows: auto; /* Permite que las filas se ajusten al contenido */
+}
+
+.text-column {
+  font-weight: bold;
+  font-family: 'MyCustomFont', sans-serif;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+
+.card-column {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* Adjust number of columns and spacing */
+  gap: 10px; /* Adjust gap between cards */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__image {
+  width: 40px; /* Ajusta el ancho de la imagen */
+  height: 60px; /* Ajusta la altura de la imagen */
+  background-color: transparent; /* Color de fondo por defecto si no hay imagen */
+  border: 1px solid #7e5fc9;
+  border-radius: 4.5px;
+  margin-bottom: 2px;
+}
+
+.card__text {
+  font-family: 'MyCustomFont', sans-serif;
+  color: white;
+  font-size: 12px;
+}

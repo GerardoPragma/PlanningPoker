@@ -35,6 +35,7 @@ export class CreateGameComponent implements OnInit {
   onSubmit() {
     //console.log('Nombre de la partida:', this.createGameForm.value.nombrePartida);
     this.gameService.changeGameName(this.createGameForm.value.nombrePartida);
+    this.gameService.changeShowCrearPartida(false);
     this.router.navigate(['/game-table']);
     this.abrirModal.emit();
   }

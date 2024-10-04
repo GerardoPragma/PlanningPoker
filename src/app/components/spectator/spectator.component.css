@@ -1,0 +1,216 @@
+.poker-table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+  
+  .poker-table {
+    position: relative;
+    width: 550px;
+    height: 300px;
+    border-radius: 300px;
+  }
+  
+  .table-felt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+  
+  .outer-border, .middle-border, .inner-border {
+    position: absolute;
+    border-radius: inherit;
+    box-sizing: border-box;
+    border-style: solid; /* Asegurarse que todos los bordes sean sólidos */
+  }
+  
+  .outer-border {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-width: 2px;
+    border-color: #6E3FCB;
+    box-shadow: 0 0 2px #6429CD;
+  }
+  
+  .middle-border {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 87%;
+    height: 87%;
+    border-width: 2px;
+    border-color: #8D6FE0;
+    box-shadow: 0 0 2px #6429CD;
+  }
+  
+  .inner-border {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border-width: 2px;
+    border-color: #471C8E;
+    background-color: #2A0F52;
+    box-shadow: 0 0 2px #6429CD;
+  }
+
+  .show-cards-button {
+    padding: 8px 20px 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: fit-content;
+    font-family: 'MyCustomFont', sans-serif;
+    color: white;
+    background-color: #6429CD;
+  }
+  
+  .center-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loader .dot:nth-child(1) { --i: 0; }
+  .loader .dot:nth-child(2) { --i: 1; }
+  .loader .dot:nth-child(3) { --i: 2; }
+  .loader .dot:nth-child(4) { --i: 3; }
+  
+  .dot {
+    width: 16px;
+    height: 16px;
+    border: 5px solid #6b26cb;
+    background-color: transparent;
+    border-radius: 50%;
+    margin: 10px 5px;
+    animation: bounce 1s infinite alternate;
+    animation-delay: calc(0.1s * var(--i));
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .count_text {
+    font-family: 'MyCustomFont', sans-serif;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  /* tarjetas */
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Adjust column widths as needed */
+    gap: 20px; /* Adjust gap between columns */
+    grid-template-rows: auto; /* Permite que las filas se ajusten al contenido */
+    width: 60%;
+  }
+  
+  .text-column {
+    font-weight: bold;
+    font-family: 'MyCustomFont', sans-serif;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .card-column {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px; /* Ajusta el ancho de la imagen */
+    height: 45px; /* Ajusta la altura de la imagen */
+    background-color: transparent; /* Color de fondo por defecto si no hay imagen */
+    border: 1px solid #7e5fc9;
+    border-radius: 4.5px;
+    margin-bottom: 2px;
+  }
+
+  .card-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: end;
+  }
+
+  .card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .center-c-elements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card__text {
+    font-family: 'MyCustomFont', sans-serif;
+    color: white;
+    font-size: 12px;
+  }
+
+  .changeCardBackground {
+    background-color: #BB65FF;
+  }
+
+  .circular-element {
+    color: #330072;
+    font-weight: bold;
+    font-family: 'MyCustomFont', sans-serif;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #BDBDFF; /* Change the background color as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+    position: relative;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
