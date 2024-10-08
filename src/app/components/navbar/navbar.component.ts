@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
+  currentShowLogoAndCrearPartida: boolean = false;
   currentShowCrearPartida: boolean = true;
   currentGameName: string = '';
   currentUserName: string = '';
@@ -21,6 +22,9 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.gameService.currentShowLogoAndCrearPartida.subscribe(showLogoAndCrearPartida => {
+      this.currentShowLogoAndCrearPartida = showLogoAndCrearPartida;
+    });
     this.gameService.currentShowCrearPartida.subscribe(showCrearPartida => {
       this.currentShowCrearPartida = showCrearPartida;
     });
