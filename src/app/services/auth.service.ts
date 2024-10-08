@@ -8,24 +8,18 @@ export class AuthService {
 
   constructor() { }
 
-  private gameUserSource = new BehaviorSubject<string>('');
+  private readonly gameUserSource = new BehaviorSubject<string>('');
   currentUserName = this.gameUserSource.asObservable();
   
-  private gameUserRole = new BehaviorSubject<string>('');
+  private readonly gameUserRole = new BehaviorSubject<string>('');
   currentUserRole = this.gameUserRole.asObservable();
 
   changeUserName(userName: string) {
     this.gameUserSource.next(userName);
   }
-  getUserName() {
-    return this.currentUserName;
-  }
 
   changeUserRole(userRole: string) {
     this.gameUserRole.next(userRole);
-  }
-  getUserRole() {
-    return this.currentUserRole;
   }
   
 }

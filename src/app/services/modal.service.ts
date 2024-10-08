@@ -8,7 +8,7 @@ export class ModalService {
 
   constructor() { }
 
-  private showModal = new BehaviorSubject<boolean>(false);
+  private readonly showModal = new BehaviorSubject<boolean>(false);
   currentShowModal = this.showModal.asObservable();
 
   changeShowModal(showModal: boolean) {

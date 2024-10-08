@@ -8,16 +8,16 @@ export class GameService {
 
   constructor() { }
 
-  private gameNameSource = new BehaviorSubject<string>('');
+  private readonly gameNameSource = new BehaviorSubject<string>('');
   currentGameName = this.gameNameSource.asObservable();
 
-  private showEspectatorElements = new BehaviorSubject<boolean>(false);
+  private readonly showEspectatorElements = new BehaviorSubject<boolean>(false);
   currentEspectatorElements = this.showEspectatorElements.asObservable();
 
-  private showCrearPartida = new BehaviorSubject<boolean>(true);
+  private readonly showCrearPartida = new BehaviorSubject<boolean>(true);
   currentShowCrearPartida = this.showCrearPartida.asObservable();
 
-  private showSelectRoleElements = new BehaviorSubject<boolean>(true);
+  private readonly showSelectRoleElements = new BehaviorSubject<boolean>(true);
   currentShowSelectRoleElements = this.showSelectRoleElements.asObservable();
 
   changeGameName(gameName: string) {

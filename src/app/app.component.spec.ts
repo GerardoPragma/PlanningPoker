@@ -1,9 +1,8 @@
-import { TestBed, ComponentFixture, tick } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { RouterModule, Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { NavbarModule } from './components/navbar/navbar.module';
 import { CreateGameComponent } from './components/create-game/create-game.component';
@@ -11,10 +10,7 @@ import { CreateGameComponent } from './components/create-game/create-game.compon
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-  let fixture2: ComponentFixture<CreateGameComponent>;
   let router: Router;
-  let createGameComponent: CreateGameComponent;
-  let abrirModalSpy: jest.SpyInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -37,10 +33,6 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
     fixture.detectChanges();
-
-    fixture2 = TestBed.createComponent(CreateGameComponent);
-    createGameComponent = fixture2.componentInstance;
-    abrirModalSpy = jest.spyOn(createGameComponent, 'onSubmit');
   });
 
   it('should create the app', () => {
@@ -67,23 +59,14 @@ describe('AppComponent', () => {
     });
   });
 
-  it('should call abrirModal on CreateGameComponent and set modalVisible to true', async () => {
-    fixture.ngZone?.run(async () => {
-      const mockCallback = jest.fn();
-      jest.spyOn(createGameComponent.abrirModal, 'subscribe').mockImplementationOnce(mockCallback);
-    
-      component.onActivate(createGameComponent);
-      fixture.detectChanges();
-    
-      expect(mockCallback).toHaveBeenCalled();
-    
-      mockCallback();
-      
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      fixture.detectChanges();
-      expect(component.modalVisible).toBe(true);
-    });
+  it('should navigate on takeOffLoadingPage', async () => {
+    jest.spyOn(router, 'navigate');
+
+    component.takeOffLoadingPage();
+    fixture.detectChanges();
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    expect(router.navigate).toHaveBeenCalledWith(['/create-game']);
   });
 
 });

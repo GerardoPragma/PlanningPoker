@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CreateGameComponent } from './components/create-game/create-game.component';
-import { SpectatorComponent } from './components/spectator/spectator.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +10,7 @@ export class AppComponent {
   title = 'PlanningPoker';
   modalVisible: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
   public takeOffLoadingPage(): void {
     setTimeout(() => {
