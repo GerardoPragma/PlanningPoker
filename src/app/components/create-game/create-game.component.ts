@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { ModalService } from '../../services/modal.service';
   templateUrl: './create-game.component.html',
   styleUrl: './create-game.component.css'
 })
-export class CreateGameComponent implements OnInit {
+export class CreateGameComponent {
   createGameForm: FormGroup;
 
   constructor(
@@ -24,7 +24,6 @@ export class CreateGameComponent implements OnInit {
     });
   }
 
-  // Validador personalizado para el nombre de la partida
   customValidators = {
     nameValidator: (control: any) => {
       const name = control.value;
@@ -35,10 +34,7 @@ export class CreateGameComponent implements OnInit {
     }
   };
 
-  ngOnInit(): void {}
-
   onSubmit() {
-    //console.log('Nombre de la partida:', this.createGameForm.value.nombrePartida);
     this.gameService.changeGameName(this.createGameForm.value.nombrePartida);
     this.gameService.changeShowCrearPartida(false);
     this.router.navigate(['/game-table']);

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SpectatorComponent } from './spectator.component';
 import { GameService } from '../../services/game.service';
-import { AuthService } from '../../services/auth.service';
 import { ModalService } from '../../services/modal.service';
 import { Router } from '@angular/router'; 
 
@@ -9,7 +8,6 @@ describe('SpectatorComponent', () => {
   let component: SpectatorComponent;
   let fixture: ComponentFixture<SpectatorComponent>;
   let gameService: GameService;
-  let authService: AuthService;
   let modalService: ModalService;
   let router: Router;
 
@@ -18,7 +16,6 @@ describe('SpectatorComponent', () => {
       declarations: [SpectatorComponent],
       providers: [
         GameService,
-        AuthService,
         ModalService,
         { provide: Router, useValue: { navigate: jest.fn() } },
       ],
@@ -67,7 +64,7 @@ describe('SpectatorComponent', () => {
     jest.spyOn(router, 'navigate');
 
     component.nuevaVotacion();
-    fixture.detectChanges(); // detect changes to trigger setTimeout
+    fixture.detectChanges();
 
     await new Promise(resolve => setTimeout(resolve, 1000));
 

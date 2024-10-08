@@ -1,19 +1,17 @@
-/* game-name.component.css */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ajuste a altura conforme necessário */
+    height: 100vh;
   }
 
 form {
-    display: flex;
+    display: grid;
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    display: grid;
-    grid-template-columns: 1fr; /* One column */
-    gap: 5px; /* Adjust the gap as needed */
+    grid-template-columns: 1fr;
+    gap: 5px;
   }
   
   label {

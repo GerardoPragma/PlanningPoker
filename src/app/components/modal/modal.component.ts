@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -20,7 +20,7 @@ export class ModalComponent implements OnInit {
     private readonly modalService: ModalService,
     private readonly authService: AuthService, 
     private readonly gameService: GameService, 
-    private router: Router) 
+    private readonly router: Router) 
   {
     this.createUserForm = this.fb.group({
       nombreUsuario: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20), this.customValidators.nameValidator]],
@@ -54,6 +54,12 @@ export class ModalComponent implements OnInit {
     this.gameService.changeShowEspectatorElements(true);
     this.gameService.changeShowSelectRoleElements(false);
     this.visible = false
-    this.router.navigate(['/spectator']);
+    
+    if (this.createUserForm.value.seleccionRol == "espectador") {
+      this.router.navigate(['/spectator']);
+    } else {
+      this.router.navigate(['/player']);
+    }
+    
   }
 }

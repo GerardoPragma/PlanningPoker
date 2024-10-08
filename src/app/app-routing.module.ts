@@ -4,12 +4,14 @@ import { LoadingPageComponent } from './components/loading-page/loading-page.com
 import { CreateGameComponent } from './components/create-game/create-game.component';
 import { GameTableComponent } from './components/game-table/game-table.component';
 import { SpectatorComponent } from './components/spectator/spectator.component';
+import { PlayerComponent } from './components/player/player.component';
 
 const routes: Routes = [
   { path: '', component: LoadingPageComponent },
   { path: 'create-game', component: CreateGameComponent },
   { path: 'game-table', component: GameTableComponent },
   { path: 'spectator', component: SpectatorComponent },
+  { path: 'player', component: PlayerComponent },
 ];
 
 @NgModule({

@@ -1,20 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalComponent } from './modal.component';
+import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 describe('ModalComponent', () => {
   let component: ModalComponent;
   let fixture: ComponentFixture<ModalComponent>;
+  let gameService: GameService;
   let authService: AuthService;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ModalComponent],
+      providers: [
+        GameService,
+        AuthService,
+        { provide: Router, useValue: { navigate: jest.fn() } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ModalComponent);
     component = fixture.componentInstance;
+    gameService = TestBed.inject(GameService);
     authService = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
@@ -85,10 +96,48 @@ describe('ModalComponent', () => {
     }
   });
 
-  it('should call a method after submitting the form', () => {
-    const spy = jest.spyOn(component, 'onSubmit');
+  it('should set userName, userRole, espectatorElements and selectRoleElements', async () => {
+    jest.spyOn(authService, 'changeUserName');
+    jest.spyOn(authService, 'changeUserRole');
+    jest.spyOn(gameService, 'changeShowEspectatorElements');
+    jest.spyOn(gameService, 'changeShowSelectRoleElements');
+
+    const validFormData = { nombreUsuario: 'ValidName', seleccionRol: 'espectador' };
+    component.createUserForm.setValue(validFormData);
     component.onSubmit();
-    expect(spy).toHaveBeenCalled();
+    fixture.detectChanges();
+
+    expect(component.visible).toBe(false)
+    expect(component.createUserForm.valid).toBeTruthy();
+    expect(authService.changeUserName).toHaveBeenCalledWith(validFormData.nombreUsuario);
+    expect(authService.changeUserRole).toHaveBeenCalledWith(validFormData.seleccionRol);
+    expect(gameService.changeShowEspectatorElements).toHaveBeenCalledWith(true);
+    expect(gameService.changeShowSelectRoleElements).toHaveBeenCalledWith(false);
+    
+  });
+
+  it('should navigate to spectator', async () => {
+    jest.spyOn(router, 'navigate');
+
+    const validFormData = { nombreUsuario: 'ValidName', seleccionRol: 'espectador' };
+    component.createUserForm.setValue(validFormData);
+    component.onSubmit();
+    fixture.detectChanges();
+
+    expect(component.createUserForm.valid).toBeTruthy();
+    expect(router.navigate).toHaveBeenCalledWith(['/spectator']);
+  });
+
+  it('should navigate to spectator', async () => {
+    jest.spyOn(router, 'navigate');
+
+    const validFormData = { nombreUsuario: 'ValidName', seleccionRol: 'jugador' };
+    component.createUserForm.setValue(validFormData);
+    component.onSubmit();
+    fixture.detectChanges();
+
+    expect(component.createUserForm.valid).toBeTruthy();
+    expect(router.navigate).toHaveBeenCalledWith(['/player']);
   });
 
 });

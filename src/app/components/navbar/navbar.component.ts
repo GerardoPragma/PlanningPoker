@@ -15,7 +15,10 @@ export class NavbarComponent implements OnInit {
   currentUserRole: string = '';
   currentShowEspectatorElements: boolean = false;
 
-  constructor(private gameService: GameService, private authService: AuthService) {}
+  constructor(
+    private readonly gameService: GameService, 
+    private readonly authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.gameService.currentShowCrearPartida.subscribe(showCrearPartida => {
