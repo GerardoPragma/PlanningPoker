@@ -1,166 +1,208 @@
 <div class="poker-table-container">
   
-    <div class="grid-container">
+    <div class="table-space">
 
-      <div [ngClass]="{'hidden': currentDontShowSpectatorElements}" class="card-column">
-        <div class="card-left">
-          <div class="center-c-elements">
-            <div 
-              class="card__image"
-              [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
-              <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                {{ selectedNumbers[0] }}
-              </div>
-            </div>
-            <div class="card__text">
-              Oscar
-            </div>
-          </div>
-        </div>
-  
-        <div class="card">
-          <div class="center-c-elements">
-            <div 
-              class="card__image"
-              [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
-              <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                {{ selectedNumbers[1] }}
-              </div>
-            </div>
-            <div class="card__text">
-              David
-            </div>
-          </div>
-        </div>    
-  
-        <div class="card-right">
-          <div class="center-c-elements">
-            <div 
-              class="card__image"
-              [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
-              <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                {{ selectedNumbers[2] }}
-              </div>
-            </div>
-            <div class="card__text">
-              Albert
-            </div>
-          </div>          
-        </div>
-      </div>
-  
-      <div class="card-column">
-        <div [ngClass]="{'hidden': currentDontShowSpectatorElements}" class="card">
-          <div class="center-c-elements">
-            <div 
-              class="card__image"
-              [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
-              <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                {{ selectedNumbers[3] }}
-              </div>
-            </div>
-            <div class="card__text">
-              Vale
-            </div>
-          </div>          
-        </div>
-  
-        <div class="card">
-          <div class="poker-table">
-            <div class="table-felt"></div>
-            <div class="outer-border"></div>
-            <div class="middle-border"></div>
-            <div class="inner-border"></div>
+      <div class="grid-container">
 
-            <div class="center-button">
-              <button 
-                (click)="generateNumbers()"
-                *ngIf="currentShowButton" 
-                class="show-cards-button">
-                  Revelar cartas
-              </button>
-
-              <div *ngIf="currentGenerateNumbers">
-                <div class="loader">
-                  <div class="dot"></div>
-                  <div class="dot"></div>
-                  <div class="dot"></div>
-                  <div class="dot"></div>
-                </div>
-                <div class="count_text">
-                  Contando votos
+        <div [ngClass]="{'hidden': currentDontShowSpectatorElements}" class="card-column">
+          <div class="card-left">
+            <div class="center-c-elements">
+              <div 
+                class="card__image"
+                [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
+                <div *ngIf="currentShowSelectedNumbers" class="card__text">
+                  {{ selectedNumbers[0] }}
                 </div>
               </div>
-
-              <button 
-                
-                *ngIf="currentShowSelectedNumbers" 
-                class="show-cards-button">
-                  Nueva votación
-              </button>
-            </div>
-
-          </div>
-        </div>      
-  
-        <div [ngClass]="{'hidden': currentDontShowSpectatorElements}" class="card">
-          <div class="center-c-elements">
-            <div 
-              class="card__image"
-              [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
-              <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                {{ selectedNumbers[4] }}
+              <div class="card__text">
+                Oscar
               </div>
             </div>
-            <div class="card__text">
-              Pedro
-            </div>
-          </div>          
-        </div>
-      </div>
-      
-      <div class="card-column">
-        <div [ngClass]="{'hidden': currentDontShowSpectatorElements}" class="card-left">
-          <div class="center-c-elements">
-            <div 
-              class="card__image"
-              [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
-              <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                {{ selectedNumbers[5] }}
+          </div>
+    
+          <div class="card">
+            <div class="center-c-elements">
+              <div 
+                class="card__image"
+                [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
+                <div *ngIf="currentShowSelectedNumbers" class="card__text">
+                  {{ selectedNumbers[1] }}
+                </div>
+              </div>
+              <div class="card__text">
+                David
               </div>
             </div>
-            <div class="card__text">
-              Carlos
-            </div>
-          </div>          
-        </div>
-  
-        <div *ngIf="currentShowEspectatorElements" class="card">
-          <div class="circular-element">
-            {{ currentUserNameInitials }}
-          </div>
-          <div class="card__text">
-            {{ currentUserName }}
-          </div>
-        </div>
-  
-        <div [ngClass]="{'hidden': currentDontShowSpectatorElements}" class="card-right">
-          <div class="center-c-elements">
-            <div 
-              class="card__image"
-              [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
-              <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                {{ selectedNumbers[6] }}
+          </div>    
+    
+          <div class="card-right">
+            <div class="center-c-elements">
+              <div 
+                class="card__image"
+                [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
+                <div *ngIf="currentShowSelectedNumbers" class="card__text">
+                  {{ selectedNumbers[2] }}
+                </div>
               </div>
+              <div class="card__text">
+                Albert
+              </div>
+            </div>          
+          </div>
+        </div>
+    
+        <div class="card-column">
+          <div [ngClass]="{'hidden': currentDontShowSpectatorElements}" class="card">
+            <div class="center-c-elements">
+              <div 
+                class="card__image"
+                [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
+                <div *ngIf="currentShowSelectedNumbers" class="card__text">
+                  {{ selectedNumbers[3] }}
+                </div>
+              </div>
+              <div class="card__text">
+                Vale
+              </div>
+            </div>          
+          </div>
+    
+          <div class="card">
+            <div class="poker-table">
+              <div class="table-felt"></div>
+              <div class="outer-border"></div>
+              <div class="middle-border"></div>
+              <div class="inner-border"></div>
+  
+              <div class="center-button">
+                <button 
+                  (click)="generateNumbers()"
+                  *ngIf="currentShowButton" 
+                  class="show-cards-button">
+                    Revelar cartas
+                </button>
+  
+                <div *ngIf="currentGenerateNumbers">
+                  <div class="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                  <div class="count_text">
+                    Contando votos
+                  </div>
+                </div>
+  
+                <button 
+                  (click)="nuevaVotacion()"
+                  *ngIf="currentShowSelectedNumbers" 
+                  class="show-cards-button">
+                    Nueva votación
+                </button>
+              </div>
+  
+            </div>
+          </div>      
+    
+          <div [ngClass]="{'hidden': currentDontShowSpectatorElements}" class="card">
+            <div class="center-c-elements">
+              <div 
+                class="card__image"
+                [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
+                <div *ngIf="currentShowSelectedNumbers" class="card__text">
+                  {{ selectedNumbers[4] }}
+                </div>
+              </div>
+              <div class="card__text">
+                Pedro
+              </div>
+            </div>          
+          </div>
+        </div>
+        
+        <div class="card-column">
+          <div [ngClass]="{'hidden': currentDontShowSpectatorElements}" class="card-left">
+            <div class="center-c-elements">
+              <div 
+                class="card__image"
+                [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
+                <div *ngIf="currentShowSelectedNumbers" class="card__text">
+                  {{ selectedNumbers[5] }}
+                </div>
+              </div>
+              <div class="card__text">
+                Carlos
+              </div>
+            </div>          
+          </div>
+    
+          <div *ngIf="currentShowEspectatorElements" class="card">
+            <div class="circular-element">
+              {{ currentUserNameInitials }}
             </div>
             <div class="card__text">
-              Nata
+              {{ currentUserName }}
             </div>
-          </div>          
+          </div>
+    
+          <div [ngClass]="{'hidden': currentDontShowSpectatorElements}" class="card-right">
+            <div class="center-c-elements">
+              <div 
+                class="card__image"
+                [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
+                <div *ngIf="currentShowSelectedNumbers" class="card__text">
+                  {{ selectedNumbers[6] }}
+                </div>
+              </div>
+              <div class="card__text">
+                Nata
+              </div>
+            </div>          
+          </div>
+    
         </div>
   
       </div>
 
     </div>
+
+    <div class="voting-container">
+      <div 
+        class="voting-card-column" 
+        [style.gridTemplateColumns]="'repeat(' + uniqueNumbersLength + ', 0.4fr)'">
+
+        <div 
+          class="voting-card" 
+          *ngFor="let number of uniqueNumbers | keyvalue; let i = index">
+          <div *ngIf="currentShowSelectedNumbers">
+
+            <div class="voting-card__image">
+              <div class="voting-card__text">
+                {{ number.key }}
+              </div>
+            </div>
+            <div class="voting-card__text">
+              {{ number.value }} Voto
+            </div>
+
+          </div>
+          
+        </div>
+
+        <div 
+          *ngIf="currentShowSelectedNumbers"
+          class="voting-average">
+          <div class="voting-card__text">
+            Promedio:
+          </div>
+          <div class="voting-card__average">
+            {{ average | number:'1.0-1' }}
+          </div>
+        </div>
+        
+      </div>
   
+    </div>
+
 </div>

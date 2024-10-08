@@ -9,8 +9,9 @@ export class AuthService {
   constructor() { }
 
   private gameUserSource = new BehaviorSubject<string>('');
-  private gameUserRole = new BehaviorSubject<string>('');
   currentUserName = this.gameUserSource.asObservable();
+  
+  private gameUserRole = new BehaviorSubject<string>('');
   currentUserRole = this.gameUserRole.asObservable();
 
   changeUserName(userName: string) {

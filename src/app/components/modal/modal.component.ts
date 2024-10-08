@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { ModalService } from '../../services/modal.service';
 import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
 
@@ -12,13 +13,13 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ModalComponent implements OnInit {
   createUserForm: FormGroup;
-  @Input() visible: boolean = false;
-  @Output() cerrarModal = new EventEmitter<void>();
+  visible: boolean = false;
 
   constructor(
-    private fb: FormBuilder, 
-    private authService: AuthService, 
-    private gameService: GameService, 
+    private readonly fb: FormBuilder, 
+    private readonly modalService: ModalService,
+    private readonly authService: AuthService, 
+    private readonly gameService: GameService, 
     private router: Router) 
   {
     this.createUserForm = this.fb.group({
@@ -41,7 +42,11 @@ export class ModalComponent implements OnInit {
     }
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.modalService.currentShowModal.subscribe(showModal => {
+      this.visible = showModal;
+    });
+  }
 
   onSubmit() {
     this.authService.changeUserName(this.createUserForm.value.nombreUsuario);

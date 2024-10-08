@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { GameService } from '../../services/game.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-create-game',
@@ -10,9 +12,13 @@ import { GameService } from '../../services/game.service';
 })
 export class CreateGameComponent implements OnInit {
   createGameForm: FormGroup;
-  @Output() abrirModal = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder, private router: Router, private gameService: GameService) {
+  constructor(
+    private readonly fb: FormBuilder, 
+    private readonly router: Router, 
+    private readonly gameService: GameService,
+    private readonly modalService: ModalService
+  ) {
     this.createGameForm = this.fb.group({
       nombrePartida: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20), this.customValidators.nameValidator]]
     });
@@ -29,14 +35,13 @@ export class CreateGameComponent implements OnInit {
     }
   };
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     //console.log('Nombre de la partida:', this.createGameForm.value.nombrePartida);
     this.gameService.changeGameName(this.createGameForm.value.nombrePartida);
     this.gameService.changeShowCrearPartida(false);
     this.router.navigate(['/game-table']);
-    this.abrirModal.emit();
+    this.modalService.changeShowModal(true);
   }
 }

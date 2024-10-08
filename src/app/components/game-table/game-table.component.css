@@ -7,7 +7,7 @@
 }
 
 .table-space {
-  flex-grow: 0.75;
+  flex-grow: 0.8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,6 +70,13 @@
   box-shadow: 0 0 2px #6429CD;
 }
 
+@media (max-height: 724px) {
+  .poker-table {
+    height: 250px;
+    width: 460px;
+  }
+}
+
 .center-button {
   position: absolute;
   top: 50%;
@@ -106,10 +113,10 @@
 }
 
 .card__image {
-  width: 40px; /* Ajusta el ancho de la imagen */
+  width: 35px; /* Ajusta el ancho de la imagen */
   height: 60px; /* Ajusta la altura de la imagen */
   background-color: transparent; /* Color de fondo por defecto si no hay imagen */
-  border: 1px solid #7e5fc9;
+  border: 2px solid #7A56B9;
   border-radius: 4.5px;
   margin-bottom: 2px;
 }

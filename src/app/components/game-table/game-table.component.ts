@@ -9,7 +9,7 @@ import { GameService } from '../../services/game.service';
 export class GameTableComponent implements OnInit {
   showSelectRoleElements: boolean = true;
 
-  constructor(private gameService: GameService ) {}
+  constructor(private readonly gameService: GameService ) {}
 
   ngOnInit() {
     this.gameService.currentShowSelectRoleElements.subscribe(showSelectRoleElements => {

@@ -62,6 +62,13 @@
     box-shadow: 0 0 2px #6429CD;
   }
 
+  @media (max-height: 724px) {
+    .poker-table {
+      height: 250px;
+      width: 460px;
+    }
+  }
+
   .show-cards-button {
     padding: 8px 20px 8px 20px;
     text-align: center;
@@ -131,18 +138,9 @@
     width: 60%;
   }
   
-  .text-column {
-    font-weight: bold;
-    font-family: 'MyCustomFont', sans-serif;
-    color: white;
-    font-size: 16px;
-    text-align: center;
-  }
-  
   .card-column {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
   }
   
   .card {
@@ -162,6 +160,7 @@
     border: 1px solid #7e5fc9;
     border-radius: 4.5px;
     margin-bottom: 2px;
+    font-weight: bold;
   }
 
   .card-left {
@@ -213,4 +212,70 @@
 
   .hidden {
     visibility: hidden;
+  }
+
+  /* Voting */
+  .table-space {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 124px;
+  }
+  
+  /* tarjetas */
+  .voting-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Adjust column widths as needed */
+    grid-template-rows: auto; /* Permite que las filas se ajusten al contenido */
+  }
+  
+  .voting-card-column {
+    display: grid;
+    height: 124px;
+    gap: 10px;
+  }
+  
+  .voting-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+  }
+  
+  .voting-card__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px; /* Ajusta el ancho de la imagen */
+    height: 60px; /* Ajusta la altura de la imagen */
+    background-color: transparent; /* Color de fondo por defecto si no hay imagen */
+    border: 2px solid #7A56B9;
+    border-radius: 4.5px;
+    margin-bottom: 2px;
+    font-weight: bold;
+  }
+  
+  .voting-card__text {
+    font-family: 'MyCustomFont', sans-serif;
+    color: white;
+    font-size: 12px;
+  }
+
+  .voting-average {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    align-items: baseline;
+    padding-left: 60px;
+    padding-top: 20px;
+  }
+
+  .voting-card__average {
+    display: flex;
+    justify-content: center;
+    font-family: 'MyCustomFont', sans-serif;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CreateGameComponent } from './components/create-game/create-game.component';
+import { SpectatorComponent } from './components/spectator/spectator.component';
 
 @Component({
   selector: 'app-root',
@@ -23,11 +24,4 @@ export class AppComponent {
     this.takeOffLoadingPage();
   }
 
-  onActivate(component: any) {
-    if (component instanceof CreateGameComponent) {      
-      component.abrirModal.subscribe(() => {
-        this.modalVisible = true;
-      });
-    }
-  }
 }

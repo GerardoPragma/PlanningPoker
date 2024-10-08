@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-spectator',
   templateUrl: './spectator.component.html',
   styleUrl: './spectator.component.css'
 })
-export class SpectatorComponent {
+export class SpectatorComponent implements OnInit {
   currentShowEspectatorElements: boolean = false;
   currentUserName: string = '';
   currentUserNameInitials: string = '';
@@ -20,37 +23,59 @@ export class SpectatorComponent {
 
   numbers: number[] = [];
   selectedNumbers: number[] = [];
-  uniqueNumbers: Set<number> = new Set();
+  average: number = 0;
+  uniqueNumbers: { [key: number]: number } = {};
+  uniqueNumbersLength: number = 0;
 
-  constructor(private gameService: GameService, private authService: AuthService) {}
+  constructor(
+    private readonly gameService: GameService, 
+    private readonly authService: AuthService, 
+    private readonly modalService: ModalService,
+    private readonly router: Router
+  ) {}
 
   public generateNumbers(): void {
     this.currentShowButton = false;
     this.currentGenerateNumbers = true;
 
+    // 10 numeros aleatorios diferentes (no se pueden repetir)
     const uniqueNumbers = new Set<number>();
     while (uniqueNumbers.size < 10) {
       uniqueNumbers.add(Math.floor(Math.random() * 99) + 1);
     }
     this.numbers = Array.from(uniqueNumbers);
-    console.log("10 numbers:", this.numbers)
 
-    // Selecciona aleatoriamente 7 números de los 10 generados
+    // 7 números aleatorios de los 10 generados (se pueden repetir)
     this.selectedNumbers = [];
     for (let i = 0; i < 7; i++) {
       const randomIndex = Math.floor(Math.random() * 10);
       this.selectedNumbers.push(this.numbers[randomIndex]);
     }
-    console.log("numbers selected:", this.selectedNumbers)
 
-    this.uniqueNumbers = new Set(this.selectedNumbers);
-    console.log("unique numbers:", this.uniqueNumbers)
+    // promedio de los 7 numeros aleatorios
+    this.average = this.selectedNumbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / this.selectedNumbers.length;
+
+    // contar numeros repetidos de los 7 numeros aleatorios
+    this.selectedNumbers.forEach(number => {
+      this.uniqueNumbers[number] = (this.uniqueNumbers[number] || 0) + 1;
+    });
+    this.uniqueNumbersLength = Object.keys(this.uniqueNumbers).length + 1;
 
     setTimeout(() => {
       this.currentGenerateNumbers = false;
       this.currentChangeCardBackground = false;
       this.currentShowSelectedNumbers = true;
     }, 2000);
+  }
+
+  public nuevaVotacion(): void {
+    this.currentShowSelectedNumbers = false;
+    setTimeout(() => {
+      this.gameService.changeShowEspectatorElements(false)
+      this.gameService.changeShowSelectRoleElements(true);
+      this.modalService.changeShowModal(true);
+      this.router.navigate(['/game-table']);
+    }, 1000);
   }
 
   public chargeElements(): void {
