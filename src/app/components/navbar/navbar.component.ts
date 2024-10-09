@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
       await navigator.clipboard.writeText('https://tu-link-a-copiar.com');
       console.log('Link copiado al portapapeles');
     } catch (error) {
-      console.error('Error al copiar el link:', error);
+      console.error('Error al copiar el link');
     }
   }
 
