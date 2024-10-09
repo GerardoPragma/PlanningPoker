@@ -39,7 +39,7 @@ export class GameService {
     this.showEspectatorElements.next(showEspectatorElements);
   }
 
-  changeShowSelectRoleElements(showEspectatorCard: boolean) {
-    this.showSelectRoleElements.next(showEspectatorCard);
+  changeShowSelectRoleElements(showSelectRoleElements: boolean) {
+    this.showSelectRoleElements.next(showSelectRoleElements);
   }
 }

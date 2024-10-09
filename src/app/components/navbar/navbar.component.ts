@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,11 +16,30 @@ export class NavbarComponent implements OnInit {
   currentUserNameInitials: string = '';
   currentUserRole: string = '';
   currentShowEspectatorElements: boolean = false;
+  currentShowModalInvitarJugadores: boolean = false;
 
   constructor(
     private readonly gameService: GameService, 
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly modalService: ModalService,
   ) {}
+
+  openModal() {
+    this.modalService.changeShowModalInvitarJugadores(true);
+  }
+
+  closeModal() {
+    this.modalService.changeShowModalInvitarJugadores(false);
+  }
+
+  async copiarLink() {
+    try {
+      await navigator.clipboard.writeText('https://tu-link-a-copiar.com');
+      console.log('Link copiado al portapapeles');
+    } catch (error) {
+      console.error('Error al copiar el link:', error);
+    }
+  }
 
   ngOnInit() {
     this.gameService.currentShowLogoAndCrearPartida.subscribe(showLogoAndCrearPartida => {
@@ -40,6 +60,9 @@ export class NavbarComponent implements OnInit {
     });
     this.gameService.currentEspectatorElements.subscribe(showEspectatorElements => {
       this.currentShowEspectatorElements = showEspectatorElements;
+    });
+    this.modalService.currentShowModalInvitarJugadores.subscribe(showModalInvitarJugadores => {
+      this.currentShowModalInvitarJugadores = showModalInvitarJugadores;
     });
   }
 }

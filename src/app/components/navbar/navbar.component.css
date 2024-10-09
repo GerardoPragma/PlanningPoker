@@ -15,7 +15,7 @@
 
 .logo {
   padding-left: 70px;
-  display: flex;
+  display: none;
   align-items: center;
 }
   
@@ -55,7 +55,7 @@
   position: relative;
 }
 
-button {
+.buttonInvitarJugadores {
   position: relative;
   right: 80px;
   background-color: transparent;
@@ -85,4 +85,110 @@ button {
     .invitePlayer {
       justify-content: center; /* Centrar el botón */
     }
+  }
+
+  /* MODAL */
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #00000066;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+  }
+
+  .show {
+    display: flex;
+  }
+
+  .modal-content {
+    background-color: #1F0D3F;
+    margin: 15% auto;
+    width: 32%;
+    flex-direction: column;
+    padding: 0;
+    border-radius: 25px;
+    border: 2px solid #860FE5;
+    animation: glow 1s infinite alternate;
+    border-top: none;
+  }
+  
+  .modal-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    border-radius: 20px 20px 0px 0px;
+    padding: 0px 20px;
+    color: white;
+    background-color: #6429CD;
+    text-align: left;
+    font-weight: bold;
+    font-family: 'MyCustomFont', sans-serif;
+    font-size: 13px;
+  }
+
+  .close {
+    color: white;
+    float: right;
+    font-size: 34px;
+    font-weight: lighter;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    text-decoration: none;
+  }
+  
+  .modal-body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px;
+  }
+  
+  .formm {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  input {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 25px;
+    border: 2px solid #6429CD;
+    background-color: transparent;
+    color: white;
+    outline: none;
+  }
+
+  .copiarButton {
+    position: inherit;
+    padding: 8px 20px 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: fit-content;
+    font-family: 'MyCustomFont', sans-serif;
+    color: #330072;
+    font-weight: bold;
+    background-color: white;
   }

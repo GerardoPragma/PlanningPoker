@@ -22,7 +22,7 @@
     background-color: #1F0D3F;
     margin: 15% auto; /* Centramos la modal verticalmente */
     padding: 40px;
-    border: 3px solid #733cd3;
+    border: 2px solid #BB6DFF;
     box-shadow: 0 0 10px #531DBC;
     animation: glow 1s infinite alternate;
     border-radius: 25px;
@@ -72,6 +72,7 @@
     margin-bottom: 10px;
     font-family: 'MyCustomFont', sans-serif;
     color: white;
+    outline: none;
   }
   .input:focus {
     outline: 0;

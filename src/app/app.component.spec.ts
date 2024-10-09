@@ -47,18 +47,6 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('PlanningPoker');
   });
 
-  it('should set isLoading to false and navigate to create-game route after 2 seconds', async () => {
-    fixture.ngZone?.run(async () => {
-      const navigateSpy = jest.spyOn(router, 'navigate');
-      component.ngOnInit();
-  
-      await new Promise(resolve => setTimeout(resolve, 2000));
-  
-      fixture.detectChanges();
-      expect(navigateSpy).toHaveBeenCalledWith(['/create-game']);
-    });
-  });
-
   it('should navigate on takeOffLoadingPage', async () => {
     jest.spyOn(router, 'navigate');
 

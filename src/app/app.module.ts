@@ -9,7 +9,6 @@ import { CreateGameComponent } from './components/create-game/create-game.compon
 import { SpectatorComponent } from './components/spectator/spectator.component';
 import { PlayerComponent } from './components/player/player.component';
 import { GameTableComponent } from './components/game-table/game-table.component';
-import { VoteComponent } from './components/vote/vote.component';
 
 import { NavbarModule } from './components/navbar/navbar.module';
 import { SharedModule } from './shared/shared.module';
@@ -22,7 +21,6 @@ import { SharedModule } from './shared/shared.module';
     SpectatorComponent,
     PlayerComponent,
     GameTableComponent,
-    VoteComponent,
   ],
   imports: [
     BrowserModule,

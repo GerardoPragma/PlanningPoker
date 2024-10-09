@@ -1,5 +1,27 @@
+<div *ngIf="currentShowModalInvitarJugadores" class="modal" [ngClass]="{'show': currentShowModalInvitarJugadores}">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div>Invitar jugadores</div>
+      <div>
+        <button class="close" (click)="closeModal()"> <span>&times;</span> </button>
+      </div>      
+    </div>
+    <div class="modal-body">
+      <div class="formm">
+        <input type="text" #linkInput [value]="'https://tu-link-a-copiar.com'" readonly>
+        <button 
+          class="copiarButton"
+          (click)="copiarLink()"
+        >
+        Copiar link
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <nav class="navbar">
-      <div *ngIf="currentShowLogoAndCrearPartida" class="grid-container logo">
+      <div [ngClass]="{'show': currentShowLogoAndCrearPartida}" class="grid-container logo">
         <div>
             <img height="50" src="assets/images/otrologo.png" alt="Cargando...">
         </div>
@@ -16,6 +38,13 @@
         <div *ngIf="currentShowEspectatorElements" class="circular-element">
           {{ currentUserNameInitials }}
         </div>
-        <button *ngIf="!currentShowCrearPartida" >Invitar Jugadores</button>
+        <button 
+          class="buttonInvitarJugadores"
+          *ngIf="!currentShowCrearPartida" 
+          (click)="openModal()"
+        >
+        Invitar Jugadores
+        </button>
       </div>
+
 </nav>
