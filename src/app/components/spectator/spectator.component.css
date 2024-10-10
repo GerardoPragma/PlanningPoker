@@ -220,7 +220,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 124px;
+    padding-top: 120px;
   }
   
   /* tarjetas */
@@ -259,7 +259,7 @@
   .voting-card__text {
     font-family: 'MyCustomFont', sans-serif;
     color: white;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .voting-average {
