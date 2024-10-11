@@ -9,7 +9,11 @@
       <div class="grid-container">
 
         <div class="card-column">
-            <div [ngClass]="{'hidden': currentDontShowPlayerElements}" class="card-left">
+            <div
+              onkeypress
+              (click)="makeAdmin('Carlos')" 
+              [ngClass]="{'hidden': currentDontShowPlayerElements}" 
+              class="card-left">
               <div class="center-c-elements">
                 <div 
                   class="card__image"
@@ -18,22 +22,32 @@
                     {{ selectedNumbers[1] }}
                   </div>
                 </div>
-                <div class="card__text">
+                <div
+                  [ngClass]="{'makeAdmin': userPermission['Carlos']}" 
+                  class="card__text">
                   Carlos
                 </div>
-              </div>          
+              </div>
             </div>
       
-            <div [ngClass]="{'hidden': currentDontShowPlayerElements}" class="card">
+            <div
+              [ngClass]="{'hidden': currentDontShowPlayerElements}" 
+              class="card">
               <div class="circular-element">
                 DA
               </div>
-              <div class="card__text">
+              <div 
+                [ngClass]="{'makeAdmin': userPermission['David']}" 
+                class="card__text">
                 David
               </div>
             </div>
       
-            <div [ngClass]="{'hidden': currentDontShowPlayerElements}" class="card-right">
+            <div
+              onkeypress
+              (click)="makeAdmin('Nata')" 
+              [ngClass]="{'hidden': currentDontShowPlayerElements}" 
+              class="card-right">
               <div class="center-c-elements">
                 <div 
                   class="card__image"
@@ -42,7 +56,9 @@
                     {{ selectedNumbers[2] }}
                   </div>
                 </div>
-                <div class="card__text">
+                <div 
+                  [ngClass]="{'makeAdmin': userPermission['Nata']}" 
+                  class="card__text">
                   Nata
                 </div>
               </div>          
@@ -51,7 +67,11 @@
         </div>
     
         <div class="card-column">
-          <div [ngClass]="{'hidden': currentDontShowPlayerElements}" class="card">
+          <div 
+            onkeypress
+            (click)="makeAdmin('Vale')"
+            [ngClass]="{'hidden': currentDontShowPlayerElements}" 
+            class="card">
             <div class="center-c-elements">
               <div 
                 class="card__image"
@@ -60,7 +80,9 @@
                   {{ selectedNumbers[3] }}
                 </div>
               </div>
-              <div class="card__text">
+              <div
+                [ngClass]="{'makeAdmin': userPermission['Vale']}"  
+                class="card__text">
                 Vale
               </div>
             </div>          
@@ -105,7 +127,11 @@
             </div>
           </div>      
     
-          <div [ngClass]="{'hidden': currentDontShowPlayerElements}" class="card">
+          <div 
+            onkeypress
+            (click)="makeAdmin('Pedro')"
+            [ngClass]="{'hidden': currentDontShowPlayerElements}" 
+            class="card">
             <div class="center-c-elements">
               <div 
                 class="card__image"
@@ -114,7 +140,9 @@
                   {{ selectedNumbers[4] }}
                 </div>
               </div>
-              <div class="card__text">
+              <div 
+                [ngClass]="{'makeAdmin': userPermission['Pedro']}" 
+                class="card__text">
                 Pedro
               </div>
             </div>          
@@ -122,7 +150,11 @@
         </div>
         
         <div class="card-column">
-            <div [ngClass]="{'hidden': currentDontShowPlayerElements}" class="card-left">
+            <div
+              onkeypress
+              (click)="makeAdmin('Oscar')" 
+              [ngClass]="{'hidden': currentDontShowPlayerElements}" 
+              class="card-left">
               <div class="center-c-elements">
                 <div 
                   class="card__image"
@@ -131,7 +163,9 @@
                     {{ selectedNumbers[5] }}
                   </div>
                 </div>
-                <div class="card__text">
+                <div 
+                  [ngClass]="{'makeAdmin': userPermission['Oscar']}" 
+                  class="card__text">
                   Oscar
                 </div>
               </div>
@@ -147,13 +181,19 @@
                     {{ selectedNumbers[0] }}
                   </div>
                 </div>
-                <div class="card__text">
+                <div 
+                  [ngClass]="{'makeAdmin': userPermission[currentUserName]}" 
+                  class="card__text">
                     {{ currentUserName }}
                 </div>
               </div>
             </div>
       
-            <div [ngClass]="{'hidden': currentDontShowPlayerElements}" class="card-right">
+            <div
+              onkeypress
+              (click)="makeAdmin('Albert')" 
+              [ngClass]="{'hidden': currentDontShowPlayerElements}" 
+              class="card-right">
               <div class="center-c-elements">
                 <div 
                   class="card__image"
@@ -162,7 +202,9 @@
                     {{ selectedNumbers[6] }}
                   </div>
                 </div>
-                <div class="card__text">
+                <div 
+                  [ngClass]="{'makeAdmin': userPermission['Albert']}" 
+                  class="card__text">
                   Albert
                 </div>
               </div>          

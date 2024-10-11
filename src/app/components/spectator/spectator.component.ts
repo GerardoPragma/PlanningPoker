@@ -21,6 +21,7 @@ export class SpectatorComponent implements OnInit {
   currentGenerateNumbers: boolean = false;
   currentShowSelectedNumbers: boolean = false;
 
+  userPermission: {[key: string]: boolean} = {};
   numbers: number[] = [];
   selectedNumbers: number[] = [];
   average: number = 0;
@@ -89,6 +90,23 @@ export class SpectatorComponent implements OnInit {
       this.currentChangeCardBackground = true;
       this.currentShowButton = true;
     }, 2000);
+  }
+
+  public generateUsers(): void {
+    this.userPermission = {
+      'Carlos': false,
+      'David': false,
+      'Nata': false,
+      'Vale': false,
+      'Pedro': false,
+      'Oscar': false,
+      'Albert': false,
+      currentUserName: true,
+    }
+  }
+
+  public makeAdmin(user: string): void {
+    this.userPermission[user] = true;
   }
 
   ngOnInit() {

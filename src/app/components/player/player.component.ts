@@ -23,7 +23,7 @@ export class PlayerComponent implements OnInit {
   currentShowSelectedNumbers: boolean = false;
   currentShowToastedMessage: boolean = false;
 
-
+  userPermission: {[key: string]: boolean} = {};
   cardModes: {[key: string]: []} = {};
   numbers: number[] = [];
   selectedCard: { [key: number]: boolean } = {};
@@ -136,12 +136,6 @@ export class PlayerComponent implements OnInit {
     }, 1000);
   }
 
-  public chargeElements(): void {
-    setTimeout(() => {
-      this.currentDontShowPlayerElements = false;
-    }, 1000);
-  }
-
   public changeCardBackground(): void {
     setTimeout(() => {
       this.currentChangeCardBackground = true;
@@ -149,8 +143,37 @@ export class PlayerComponent implements OnInit {
     }, 2000);
   }
 
+  public chargeElements(): void {
+    setTimeout(() => {
+      this.currentDontShowPlayerElements = false;
+    }, 1000);
+  }
+
+  public generateUsers(): void {
+    this.userPermission = {
+      'Carlos': false,
+      'David': true,
+      'Nata': false,
+      'Vale': false,
+      'Pedro': false,
+      'Oscar': false,
+      'Albert': false,
+      currentUserName: false,
+    }
+  }
+
+  public makeAdmin(user: string): void {
+    this.userPermission[user] = true;
+  }
+
+  public generateModeCards(): void {
+    
+  }
+
   ngOnInit() {
     this.generateNumbers();
+    this.chargeElements();
+    this.generateUsers();
 
     this.gameService.currentShowPlayerElements.subscribe(showPlayerElements => {
       this.currentShowPlayerElements = showPlayerElements;
@@ -161,6 +184,5 @@ export class PlayerComponent implements OnInit {
       this.currentUserNameInitials = userName.toUpperCase().slice(0, 2);
     });
 
-    this.chargeElements()
   }
 }

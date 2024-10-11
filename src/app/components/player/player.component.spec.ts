@@ -101,5 +101,13 @@ describe('PlayerComponent', () => {
     expect(modalService.changeShowModal).toHaveBeenCalledWith(true);
     expect(router.navigate).toHaveBeenCalledWith(['/game-table']);
   });
+
+  it('should set true to users', async () => {
+    component.generateUsers();
+    const userName = 'Albert'
+    component.makeAdmin(userName);
+
+    expect(component.userPermission[userName]).toBe(true);
+  });
   
 });

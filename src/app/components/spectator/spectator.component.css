@@ -188,7 +188,8 @@
   .card__text {
     font-family: 'MyCustomFont', sans-serif;
     color: white;
-    font-size: 12px;
+    font-size: 11px;
+    padding: 0px 4px;
   }
 
   .changeCardBackground {
@@ -222,8 +223,14 @@
     align-items: center;
     padding-top: 120px;
   }
+
+  .makeAdmin {
+    color: black !important;
+    border-radius: 5px;
+    background-color: #ffc400;
+  }
   
-  /* tarjetas */
+  /* -------------- Voting Cards -------------- */
   .voting-container {
     display: grid;
     grid-template-columns: 1fr; /* Adjust column widths as needed */
