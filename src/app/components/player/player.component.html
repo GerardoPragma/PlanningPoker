@@ -1,3 +1,7 @@
+<div *ngIf="currentShowToastedMessage" class="toast">
+  <span>{{ currentUserName }} acaba de elegir una carta</span>
+</div>
+
 <div class="poker-table-container">
   
     <div class="table-space">
@@ -11,7 +15,7 @@
                   class="card__image"
                   [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
                   <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                    {{ selectedNumbers[5] }}
+                    {{ selectedNumbers[1] }}
                   </div>
                 </div>
                 <div class="card__text">
@@ -35,7 +39,7 @@
                   class="card__image"
                   [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
                   <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                    {{ selectedNumbers[6] }}
+                    {{ selectedNumbers[2] }}
                   </div>
                 </div>
                 <div class="card__text">
@@ -71,9 +75,9 @@
   
               <div class="center-button">
 
-                <button 
-                  [ngClass]="{'hidden': true}"
-                  (click)="generateNumbers()"
+                <button                   
+                  (click)="showCardsAndAverage()"
+                  *ngIf="currentShowButton" 
                   class="show-cards-button">
                     Revelar cartas
                 </button>
@@ -124,7 +128,7 @@
                   class="card__image"
                   [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
                   <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                    {{ selectedNumbers[0] }}
+                    {{ selectedNumbers[5] }}
                   </div>
                 </div>
                 <div class="card__text">
@@ -133,11 +137,14 @@
               </div>
             </div>
       
-            <div *ngIf="currentShowPlayerElements" class="card">
+            <div class="card">
               <div class="center-c-elements">
-                <div class="card__image">
+                <div 
+                  class="card__image"
+                  [ngClass]="{'changeCardBackground': currentShowUserCard}"
+                >
                   <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                    {{ selectedNumbers[1] }}
+                    {{ selectedNumbers[0] }}
                   </div>
                 </div>
                 <div class="card__text">
@@ -152,7 +159,7 @@
                   class="card__image"
                   [ngClass]="{'changeCardBackground': currentChangeCardBackground}">
                   <div *ngIf="currentShowSelectedNumbers" class="card__text">
-                    {{ selectedNumbers[2] }}
+                    {{ selectedNumbers[6] }}
                   </div>
                 </div>
                 <div class="card__text">
@@ -205,81 +212,41 @@
         <div class="player-text-column">
           Elige una carta
         </div>
+        
         <div class="player-card-column">
-    
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">0</div>
+
+          <div 
+            *ngFor="let cardNumber of selectedCard | keyvalue"
+            class="player-card"
+            [ngStyle]="{'transform': cardNumber.value ? 'translateY(-5px)' : ''}"
+          >
+            <div
+              onkeypress 
+              class="player-card__image" 
+              (click)="selectCard(+cardNumber.key)"
+              [ngClass]="{'changeCardSelected': cardNumber.value}"
+            >
+              <div               
+                [ngClass]="{'changeCardSelectedColor': cardNumber.value}"
+                class="player-card__text">
+                  {{ +cardNumber.key }}
+              </div>
             </div>
             <div class="player-card__text"></div>
           </div>
     
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">1</div>
-            </div>
-            <div class="player-card__text"></div>
-          </div>
-    
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">1</div>
-            </div>
-            <div class="player-card__text"></div>
-          </div>
-    
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">1</div>
-            </div>
-            <div class="player-card__text"></div>
-          </div>
-    
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">8</div>
-            </div>
-            <div class="player-card__text"></div>
-          </div>
-    
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">13</div>
-            </div>
-            <div class="player-card__text"></div>
-          </div>
-    
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">21</div>
-            </div>
-            <div class="player-card__text"></div>
-          </div>
-    
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">34</div>
-            </div>
-            <div class="player-card__text"></div>
-          </div>
-    
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">55</div>
-            </div>
-            <div class="player-card__text"></div>
-          </div>
-    
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">89</div>
-            </div>
-            <div class="player-card__text"></div>
-          </div>
-    
-          <div class="player-card">
-            <div class="player-card__image">
-              <div class="player-card__text">?</div>
+          <div class="player-card" [ngStyle]="{'transform': selectedCardQuestion ? 'translateY(-5px)' : ''}">
+            <div 
+              onkeypress
+              (click)="selectCard(-10)" 
+              class="player-card__image"
+              [ngClass]="{'changeCardSelected': selectedCardQuestion}"
+            >
+              <div 
+                [ngClass]="{'changeCardSelectedColor': selectedCardQuestion}" 
+                class="player-card__text">
+                  ?
+              </div>
             </div>
             <div class="player-card__text"></div>
           </div>
@@ -292,6 +259,7 @@
           </div>
     
         </div>
+
     </div>
 
 </div>

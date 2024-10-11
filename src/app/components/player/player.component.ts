@@ -18,10 +18,14 @@ export class PlayerComponent implements OnInit {
   currentDontShowPlayerElements: boolean = true;
   currentChangeCardBackground: boolean = false;
   currentShowButton: boolean = false;
+  currentShowUserCard: boolean = false;
   currentGenerateNumbers: boolean = false;
   currentShowSelectedNumbers: boolean = false;
+  currentShowToastedMessage: boolean = false;
 
   numbers: number[] = [];
+  selectedCard: { [key: number]: boolean } = {};
+  selectedCardQuestion: boolean = false;
   selectedNumbers: number[] = [];
   average: number = 0;
   uniqueNumbers: { [key: number]: number } = {};
@@ -34,34 +38,83 @@ export class PlayerComponent implements OnInit {
     private readonly router: Router
   ) {}
 
-  public generateNumbers(): void {
-    this.currentShowButton = false;
-    this.currentGenerateNumbers = true;
+  public createAndResetSelectedCardValues(): void {
+    // create selectedCards and boolean values or reset values
+    this.numbers.forEach(number => {
+      this.selectedCard[number] = false;
+    });
+    this.selectedCardQuestion = false;
+  }
 
+  public generateNumbers(): void {
     // 10 numeros aleatorios diferentes (no se pueden repetir)
     const uniqueNumbers = new Set<number>();
     while (uniqueNumbers.size < 10) {
       uniqueNumbers.add(Math.floor(Math.random() * 99) + 1);
     }
     this.numbers = Array.from(uniqueNumbers);
+    // ordenar los 10 numeros de menor a mayor
+    this.numbers.sort((a, b) => a - b);
 
-    // 7 números aleatorios de los 10 generados (se pueden repetir)
+    this.createAndResetSelectedCardValues()
+  }
+
+  public selectCard(cardNumber: number) {
+    this.createAndResetSelectedCardValues()
+
+    // actualizar valor de card seleccionada a true
     this.selectedNumbers = [];
-    for (let i = 0; i < 7; i++) {
+    if (cardNumber < 0) {
+      this.selectedCardQuestion = true;
+      // agregar numero aleatorio a selectedNumbers
+      const randomIndex = Math.floor(Math.random() * 10);
+      this.selectedNumbers.push(this.numbers[randomIndex]);      
+
+    } else {      
+      this.selectedCard[cardNumber] = true
+      // agregar numero seleccionado a selectedNumbers
+      this.selectedNumbers.push(cardNumber);
+    }
+
+    // show button Revelar Cartas
+    this.currentShowButton = true;
+    this.currentShowUserCard = true;
+
+    // show toasted message
+    this.currentShowToastedMessage = true;
+
+    // build and calculated variables
+    this.buildVariables();
+
+    // change other cards background
+    this.changeCardBackground();
+  }
+
+  public buildVariables():void {
+    // 6 números aleatorios de los 10 generados + numero seleccionado (se pueden repetir)
+    for (let i = 0; i < 6; i++) {
       const randomIndex = Math.floor(Math.random() * 10);
       this.selectedNumbers.push(this.numbers[randomIndex]);
     }
 
-    // promedio de los 7 numeros aleatorios
+    // promedio de los 6 numeros aleatorios + numero seleccionado
     this.average = this.selectedNumbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / this.selectedNumbers.length;
 
-    // contar numeros repetidos de los 7 numeros aleatorios
+    // contar numeros repetidos de los 6 numeros aleatorios + numero seleccionado
     this.selectedNumbers.forEach(number => {
       this.uniqueNumbers[number] = (this.uniqueNumbers[number] || 0) + 1;
     });
+    // +1 para agregar un grid en el template
     this.uniqueNumbersLength = Object.keys(this.uniqueNumbers).length + 1;
+  }
+
+  public showCardsAndAverage(): void {
+    this.currentShowButton = false;
+    this.currentGenerateNumbers = true;
 
     setTimeout(() => {
+      this.currentShowUserCard = false;
+      this.currentShowPlayerElements = false;
       this.currentGenerateNumbers = false;
       this.currentChangeCardBackground = false;
       this.currentShowSelectedNumbers = true;
@@ -69,10 +122,12 @@ export class PlayerComponent implements OnInit {
   }
 
   public nuevaVotacion(): void {
+    this.createAndResetSelectedCardValues()
     this.currentShowSelectedNumbers = false;
+    this.currentShowPlayerElements = true;
+
     setTimeout(() => {
-      this.gameService.changeShowEspectatorElements(false)
-      this.gameService.changeShowSelectRoleElements(true);
+      this.gameService.changeShowPlayerElements(false)
       this.modalService.changeShowModal(true);
       this.router.navigate(['/game-table']);
     }, 1000);
@@ -87,13 +142,15 @@ export class PlayerComponent implements OnInit {
   public changeCardBackground(): void {
     setTimeout(() => {
       this.currentChangeCardBackground = true;
-      this.currentShowButton = true;
+      this.currentShowToastedMessage = false;
     }, 2000);
   }
 
   ngOnInit() {
-    this.gameService.currentEspectatorElements.subscribe(showEspectatorElements => {
-      this.currentShowPlayerElements = showEspectatorElements;
+    this.generateNumbers();
+
+    this.gameService.currentShowPlayerElements.subscribe(showPlayerElements => {
+      this.currentShowPlayerElements = showPlayerElements;
     });
 
     this.authService.currentUserName.subscribe(userName => {
@@ -102,6 +159,5 @@ export class PlayerComponent implements OnInit {
     });
 
     this.chargeElements()
-    //this.changeCardBackground()
   }
 }

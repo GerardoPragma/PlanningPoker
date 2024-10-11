@@ -100,7 +100,6 @@ describe('ModalComponent', () => {
     jest.spyOn(authService, 'changeUserName');
     jest.spyOn(authService, 'changeUserRole');
     jest.spyOn(gameService, 'changeShowEspectatorElements');
-    jest.spyOn(gameService, 'changeShowSelectRoleElements');
 
     const validFormData = { nombreUsuario: 'ValidName', seleccionRol: 'espectador' };
     component.createUserForm.setValue(validFormData);
@@ -112,8 +111,6 @@ describe('ModalComponent', () => {
     expect(authService.changeUserName).toHaveBeenCalledWith(validFormData.nombreUsuario);
     expect(authService.changeUserRole).toHaveBeenCalledWith(validFormData.seleccionRol);
     expect(gameService.changeShowEspectatorElements).toHaveBeenCalledWith(true);
-    expect(gameService.changeShowSelectRoleElements).toHaveBeenCalledWith(false);
-    
   });
 
   it('should navigate to spectator', async () => {

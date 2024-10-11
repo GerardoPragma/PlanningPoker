@@ -191,10 +191,6 @@
     font-size: 12px;
   }
 
-  .changeCardBackground {
-    background-color: #BB65FF;
-  }
-
   .circular-element {
     color: #330072;
     font-weight: bold;
@@ -219,7 +215,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 124px;
+    padding-top: 127px;
   }
   
   /* -------------- Voting Cards -------------- */
@@ -231,7 +227,7 @@
   
   .voting-card-column {
     display: grid;
-    height: 124px;
+    height: 132px;
     gap: 10px;
   }
   
@@ -298,14 +294,15 @@
 
   .player-card-column {
     display: grid;
-    grid-template-columns: repeat(12, 1fr); /* Adjust number of columns and spacing */
-    gap: 10px; /* Adjust gap between cards */
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
   }
   
   .player-card {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
   }
   
   .player-card__image {
@@ -325,4 +322,46 @@
     font-family: 'MyCustomFont', sans-serif;
     color: white;
     font-size: 14px;
+  }
+
+  /* Changes */
+  .changeCardBackground {
+    background-color: #BB65FF;
+  }
+
+  .changeCardSelected {
+    border: none;
+    background-color: #E3A4FF;
+    box-shadow: 0 0 5px #531DBC;
+  }
+
+  .changeCardSelectedColor {
+    color: #330072;
+  }
+
+  /* Toast message */
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #2A0F52;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #531DBC;
+    transition: opacity 0.3s ease-in-out;
+    font-family: 'MyCustomFont', sans-serif;
+    font-size: 12px;
+    /* Animación de entrada */
+    animation: bounce2 1s infinite alternate;
+    animation-delay: calc(0.2s * var(--i));
+  }
+  
+  @keyframes bounce2 {
+    0% {
+      transform: translateX(0px);
+    }
+    100% {
+      transform: translateX(-15px);
+    }
   }

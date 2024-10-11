@@ -58,7 +58,7 @@ export class NavbarComponent implements OnInit {
     this.authService.currentUserRole.subscribe(userRole => {
       this.currentUserRole = userRole;
     });
-    this.gameService.currentEspectatorElements.subscribe(showEspectatorElements => {
+    this.gameService.currentShowEspectatorElements.subscribe(showEspectatorElements => {
       this.currentShowEspectatorElements = showEspectatorElements;
     });
     this.modalService.currentShowModalInvitarJugadores.subscribe(showModalInvitarJugadores => {

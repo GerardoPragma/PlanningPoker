@@ -72,7 +72,6 @@ export class SpectatorComponent implements OnInit {
     this.currentShowSelectedNumbers = false;
     setTimeout(() => {
       this.gameService.changeShowEspectatorElements(false)
-      this.gameService.changeShowSelectRoleElements(true);
       this.modalService.changeShowModal(true);
       this.router.navigate(['/game-table']);
     }, 1000);
@@ -92,7 +91,7 @@ export class SpectatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gameService.currentEspectatorElements.subscribe(showEspectatorElements => {
+    this.gameService.currentShowEspectatorElements.subscribe(showEspectatorElements => {
       this.currentShowEspectatorElements = showEspectatorElements;
     });
 

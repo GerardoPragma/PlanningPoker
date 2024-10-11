@@ -59,7 +59,6 @@ describe('SpectatorComponent', () => {
     expect(component.currentShowSelectedNumbers).toBe(false);
 
     jest.spyOn(gameService, 'changeShowEspectatorElements');
-    jest.spyOn(gameService, 'changeShowSelectRoleElements');
     jest.spyOn(modalService, 'changeShowModal');
     jest.spyOn(router, 'navigate');
 
@@ -69,7 +68,6 @@ describe('SpectatorComponent', () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     expect(gameService.changeShowEspectatorElements).toHaveBeenCalledWith(false);
-    expect(gameService.changeShowSelectRoleElements).toHaveBeenCalledWith(true);
     expect(modalService.changeShowModal).toHaveBeenCalledWith(true);
     expect(router.navigate).toHaveBeenCalledWith(['/game-table']);
   });

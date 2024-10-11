@@ -8,38 +8,39 @@ export class GameService {
 
   constructor() { }
 
-  private readonly showLogoAndCrearPartida = new BehaviorSubject<boolean>(false);
-  currentShowLogoAndCrearPartida = this.showLogoAndCrearPartida.asObservable();
-
-  private readonly showCrearPartida = new BehaviorSubject<boolean>(true);
-  currentShowCrearPartida = this.showCrearPartida.asObservable();
-
+  // Create game Component
   private readonly gameNameSource = new BehaviorSubject<string>('');
   currentGameName = this.gameNameSource.asObservable();
+  changeGameName(gameName: string) {
+    this.gameNameSource.next(gameName);
+  }
 
-  private readonly showEspectatorElements = new BehaviorSubject<boolean>(false);
-  currentEspectatorElements = this.showEspectatorElements.asObservable();
-
-  private readonly showSelectRoleElements = new BehaviorSubject<boolean>(true);
-  currentShowSelectRoleElements = this.showSelectRoleElements.asObservable();
-
+  // Spectator Component
+  private readonly showLogoAndCrearPartida = new BehaviorSubject<boolean>(false);
+  currentShowLogoAndCrearPartida = this.showLogoAndCrearPartida.asObservable();
   changeShowLogoAndCrearPartida(showLogoAndCrearPartida: boolean) {
     this.showLogoAndCrearPartida.next(showLogoAndCrearPartida);
   }
 
+  private readonly showCrearPartida = new BehaviorSubject<boolean>(true);
+  currentShowCrearPartida = this.showCrearPartida.asObservable();
   changeShowCrearPartida(showCrearPartida: boolean) {
     this.showCrearPartida.next(showCrearPartida);
   }
 
-  changeGameName(gameName: string) {
-    this.gameNameSource.next(gameName);
-  }
-  
+  private readonly showEspectatorElements = new BehaviorSubject<boolean>(false);
+  currentShowEspectatorElements = this.showEspectatorElements.asObservable();
   changeShowEspectatorElements(showEspectatorElements: boolean) {
     this.showEspectatorElements.next(showEspectatorElements);
   }
 
-  changeShowSelectRoleElements(showSelectRoleElements: boolean) {
-    this.showSelectRoleElements.next(showSelectRoleElements);
+  // Player Component
+  private readonly showPlayerElements = new BehaviorSubject<boolean>(false);
+  currentShowPlayerElements = this.showPlayerElements.asObservable();
+
+  changeShowPlayerElements(showPlayerElements: boolean) {
+    this.showPlayerElements.next(showPlayerElements);
   }
+
+  
 }
