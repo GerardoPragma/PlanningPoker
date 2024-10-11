@@ -23,6 +23,8 @@ export class PlayerComponent implements OnInit {
   currentShowSelectedNumbers: boolean = false;
   currentShowToastedMessage: boolean = false;
 
+
+  cardModes: {[key: string]: []} = {};
   numbers: number[] = [];
   selectedCard: { [key: number]: boolean } = {};
   selectedCardQuestion: boolean = false;
@@ -128,6 +130,7 @@ export class PlayerComponent implements OnInit {
 
     setTimeout(() => {
       this.gameService.changeShowPlayerElements(false)
+      this.gameService.changeShowSpectatorElements(false)
       this.modalService.changeShowModal(true);
       this.router.navigate(['/game-table']);
     }, 1000);

@@ -29,13 +29,16 @@
       </div>
 
       <div class="grid-container text2">
-        <div *ngIf="currentShowEspectatorElements">
+        <div *ngIf="currentShowSpectatorElements">
           {{ currentGameName }}
         </div>
       </div>
 
       <div class="grid-container invitePlayer">
-        <div *ngIf="currentShowEspectatorElements" class="circular-element">
+        <div 
+          onkeypress
+          (click)="changeVisualizationMode()" 
+          *ngIf="currentShowSpectatorElements || currentShowPlayerElements" class="circular-element">
           {{ currentUserNameInitials }}
         </div>
         <button 

@@ -51,7 +51,7 @@ export class ModalComponent implements OnInit {
   onSubmit() {
     this.authService.changeUserName(this.createUserForm.value.nombreUsuario);
     this.authService.changeUserRole(this.createUserForm.value.seleccionRol);
-    this.gameService.changeShowEspectatorElements(true);
+    this.gameService.changeShowSpectatorElements(true);
     this.gameService.changeShowPlayerElements(true);
     this.visible = false
     

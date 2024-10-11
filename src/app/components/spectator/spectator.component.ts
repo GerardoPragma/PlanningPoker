@@ -11,7 +11,7 @@ import { ModalService } from '../../services/modal.service';
   styleUrl: './spectator.component.css'
 })
 export class SpectatorComponent implements OnInit {
-  currentShowEspectatorElements: boolean = false;
+  currentShowSpectatorElements: boolean = false;
   currentUserName: string = '';
   currentUserNameInitials: string = '';
 
@@ -71,7 +71,8 @@ export class SpectatorComponent implements OnInit {
   public nuevaVotacion(): void {
     this.currentShowSelectedNumbers = false;
     setTimeout(() => {
-      this.gameService.changeShowEspectatorElements(false)
+      this.gameService.changeShowPlayerElements(false)
+      this.gameService.changeShowSpectatorElements(false)
       this.modalService.changeShowModal(true);
       this.router.navigate(['/game-table']);
     }, 1000);
@@ -91,8 +92,8 @@ export class SpectatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gameService.currentShowEspectatorElements.subscribe(showEspectatorElements => {
-      this.currentShowEspectatorElements = showEspectatorElements;
+    this.gameService.currentShowSpectatorElements.subscribe(showSpectatorElements => {
+      this.currentShowSpectatorElements = showSpectatorElements;
     });
 
     this.authService.currentUserName.subscribe(userName => {

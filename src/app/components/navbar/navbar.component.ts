@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
 import { ModalService } from '../../services/modal.service';
@@ -15,13 +17,15 @@ export class NavbarComponent implements OnInit {
   currentUserName: string = '';
   currentUserNameInitials: string = '';
   currentUserRole: string = '';
-  currentShowEspectatorElements: boolean = false;
+  currentShowSpectatorElements: boolean = false;
+  currentShowPlayerElements: boolean = false;
   currentShowModalInvitarJugadores: boolean = false;
 
   constructor(
     private readonly gameService: GameService, 
     private readonly authService: AuthService,
     private readonly modalService: ModalService,
+    private readonly router: Router
   ) {}
 
   openModal() {
@@ -30,6 +34,13 @@ export class NavbarComponent implements OnInit {
 
   closeModal() {
     this.modalService.changeShowModalInvitarJugadores(false);
+  }
+
+  changeVisualizationMode() {
+    this.gameService.changeShowPlayerElements(false)
+    this.gameService.changeShowSpectatorElements(false)
+    this.modalService.changeShowModal(true);
+    this.router.navigate(['/game-table']);
   }
 
   async copiarLink() {
@@ -58,8 +69,11 @@ export class NavbarComponent implements OnInit {
     this.authService.currentUserRole.subscribe(userRole => {
       this.currentUserRole = userRole;
     });
-    this.gameService.currentShowEspectatorElements.subscribe(showEspectatorElements => {
-      this.currentShowEspectatorElements = showEspectatorElements;
+    this.gameService.currentShowSpectatorElements.subscribe(showSpectatorElements => {
+      this.currentShowSpectatorElements = showSpectatorElements;
+    });
+    this.gameService.currentShowPlayerElements.subscribe(showPlayerElements => {
+      this.currentShowPlayerElements = showPlayerElements;
     });
     this.modalService.currentShowModalInvitarJugadores.subscribe(showModalInvitarJugadores => {
       this.currentShowModalInvitarJugadores = showModalInvitarJugadores;

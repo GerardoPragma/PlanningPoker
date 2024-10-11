@@ -58,7 +58,7 @@ describe('SpectatorComponent', () => {
   it('should call the necessary services and navigate on nuevaVotacion', async () => {
     expect(component.currentShowSelectedNumbers).toBe(false);
 
-    jest.spyOn(gameService, 'changeShowEspectatorElements');
+    jest.spyOn(gameService, 'changeShowSpectatorElements');
     jest.spyOn(modalService, 'changeShowModal');
     jest.spyOn(router, 'navigate');
 
@@ -67,7 +67,7 @@ describe('SpectatorComponent', () => {
 
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    expect(gameService.changeShowEspectatorElements).toHaveBeenCalledWith(false);
+    expect(gameService.changeShowSpectatorElements).toHaveBeenCalledWith(false);
     expect(modalService.changeShowModal).toHaveBeenCalledWith(true);
     expect(router.navigate).toHaveBeenCalledWith(['/game-table']);
   });

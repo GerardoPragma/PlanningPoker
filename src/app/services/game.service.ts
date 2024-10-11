@@ -28,10 +28,10 @@ export class GameService {
     this.showCrearPartida.next(showCrearPartida);
   }
 
-  private readonly showEspectatorElements = new BehaviorSubject<boolean>(false);
-  currentShowEspectatorElements = this.showEspectatorElements.asObservable();
-  changeShowEspectatorElements(showEspectatorElements: boolean) {
-    this.showEspectatorElements.next(showEspectatorElements);
+  private readonly showSpectatorElements = new BehaviorSubject<boolean>(false);
+  currentShowSpectatorElements = this.showSpectatorElements.asObservable();
+  changeShowSpectatorElements(showSpectatorElements: boolean) {
+    this.showSpectatorElements.next(showSpectatorElements);
   }
 
   // Player Component

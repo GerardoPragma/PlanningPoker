@@ -53,6 +53,7 @@
   margin-right: 10px; /* Adjust the margin as needed */
   right: 80px;
   position: relative;
+  cursor: pointer;
 }
 
 .buttonInvitarJugadores {
