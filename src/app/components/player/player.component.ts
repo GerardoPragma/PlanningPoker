@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
-import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-player',
@@ -23,8 +21,7 @@ export class PlayerComponent implements OnInit {
   currentShowSelectedNumbers: boolean = false;
   currentShowToastedMessage: boolean = false;
 
-  userPermission: {[key: string]: boolean} = {};
-  cardModes: {[key: string]: []} = {};
+  userPermission: {[key: string]: boolean} = {}
   numbers: number[] = [];
   selectedCard: { [key: number]: boolean } = {};
   selectedCardQuestion: boolean = false;
@@ -32,12 +29,16 @@ export class PlayerComponent implements OnInit {
   average: number = 0;
   uniqueNumbers: { [key: number]: number } = {};
   uniqueNumbersLength: number = 0;
+  selectedCardMode: {[key: string]: boolean} = {
+    'F': true,
+    'A': false,
+    'P': false
+  };
+  showCardMode: boolean = true;
 
   constructor(
     private readonly gameService: GameService, 
-    private readonly authService: AuthService, 
-    private readonly modalService: ModalService,
-    private readonly router: Router
+    private readonly authService: AuthService,
   ) {}
 
   public createAndResetSelectedCardValues(): void {
@@ -48,24 +49,48 @@ export class PlayerComponent implements OnInit {
     this.selectedCardQuestion = false;
   }
 
-  public generateNumbers(): void {
-    // 10 numeros aleatorios diferentes (no se pueden repetir)
-    const uniqueNumbers = new Set<number>();
-    while (uniqueNumbers.size < 10) {
-      uniqueNumbers.add(Math.floor(Math.random() * 99) + 1);
+  public changeCardMode(cardMode: string): void {
+    for (const key in this.selectedCardMode) {
+      this.selectedCardMode[key] = false;
     }
-    this.numbers = Array.from(uniqueNumbers);
-    // ordenar los 10 numeros de menor a mayor
-    this.numbers.sort((a, b) => a - b);
+    this.selectedCardMode[cardMode] = true;
 
+    if (this.currentShowButton === true) {
+      this.currentShowButton = false;
+      this.currentShowUserCard = false;
+      this.currentChangeCardBackground = false;
+    }
+  }
+
+  public generateNumbers(cardMode: string): void {
+    this.numbers = [];
+    
+    this.changeCardMode(cardMode);
+
+    if (cardMode == 'F') { // 10 numeros de fibonacci
+      this.numbers = [0, 1, 3, 5, 8, 13, 21, 34, 55, 89];
+
+    } else if (cardMode == 'P') { // 10 numeros potencia
+      this.numbers = [0, 1, 4, 9, 16, 25, 36, 49, 64, 81];
+
+    } else { // 10 numeros aleatorios diferentes (no se pueden repetir)      
+      const uniqueNumbers = new Set<number>();
+      while (uniqueNumbers.size < 10) {
+        uniqueNumbers.add(Math.floor(Math.random() * 99) + 1);
+      }
+      this.numbers = Array.from(uniqueNumbers);
+      // ordenar los 10 numeros de menor a mayor
+      this.numbers.sort((a, b) => a - b);
+    }
+
+    this.selectedCard = {};
     this.createAndResetSelectedCardValues()
   }
 
   public selectCard(cardNumber: number) {
     this.createAndResetSelectedCardValues()
-
-    // actualizar valor de card seleccionada a true
     this.selectedNumbers = [];
+
     if (cardNumber < 0) {
       this.selectedCardQuestion = true;
       // agregar numero aleatorio a selectedNumbers
@@ -81,18 +106,18 @@ export class PlayerComponent implements OnInit {
     // show button Revelar Cartas
     this.currentShowButton = true;
     this.currentShowUserCard = true;
-
     // show toasted message
     this.currentShowToastedMessage = true;
-
     // build and calculated variables
     this.buildVariables();
-
     // change other cards background
     this.changeCardBackground();
   }
 
   public buildVariables():void {
+    // reset variables
+    this.uniqueNumbers = {};
+
     // 6 números aleatorios de los 10 generados + numero seleccionado (se pueden repetir)
     for (let i = 0; i < 6; i++) {
       const randomIndex = Math.floor(Math.random() * 10);
@@ -106,6 +131,7 @@ export class PlayerComponent implements OnInit {
     this.selectedNumbers.forEach(number => {
       this.uniqueNumbers[number] = (this.uniqueNumbers[number] || 0) + 1;
     });
+
     // +1 para agregar un grid en el template
     this.uniqueNumbersLength = Object.keys(this.uniqueNumbers).length + 1;
   }
@@ -113,6 +139,7 @@ export class PlayerComponent implements OnInit {
   public showCardsAndAverage(): void {
     this.currentShowButton = false;
     this.currentGenerateNumbers = true;
+    this.showCardMode = false;
 
     setTimeout(() => {
       this.currentShowUserCard = false;
@@ -127,13 +154,8 @@ export class PlayerComponent implements OnInit {
     this.createAndResetSelectedCardValues()
     this.currentShowSelectedNumbers = false;
     this.currentShowPlayerElements = true;
-
-    setTimeout(() => {
-      this.gameService.changeShowPlayerElements(false)
-      this.gameService.changeShowSpectatorElements(false)
-      this.modalService.changeShowModal(true);
-      this.router.navigate(['/game-table']);
-    }, 1000);
+    this.showCardMode = true;
+    this.generateNumbers('F')
   }
 
   public changeCardBackground(): void {
@@ -149,31 +171,13 @@ export class PlayerComponent implements OnInit {
     }, 1000);
   }
 
-  public generateUsers(): void {
-    this.userPermission = {
-      'Carlos': false,
-      'David': true,
-      'Nata': false,
-      'Vale': false,
-      'Pedro': false,
-      'Oscar': false,
-      'Albert': false,
-      currentUserName: false,
-    }
-  }
-
   public makeAdmin(user: string): void {
     this.userPermission[user] = true;
   }
 
-  public generateModeCards(): void {
-    
-  }
-
   ngOnInit() {
-    this.generateNumbers();
+    this.generateNumbers('F');
     this.chargeElements();
-    this.generateUsers();
 
     this.gameService.currentShowPlayerElements.subscribe(showPlayerElements => {
       this.currentShowPlayerElements = showPlayerElements;
@@ -183,6 +187,17 @@ export class PlayerComponent implements OnInit {
       this.currentUserName = userName;
       this.currentUserNameInitials = userName.toUpperCase().slice(0, 2);
     });
+
+    this.userPermission = {
+      'Carlos': false,
+      'David': true,
+      'Nata': false,
+      'Vale': false,
+      'Pedro': false,
+      'Oscar': false,
+      'Albert': false,
+      currentUserName: true,
+    };
 
   }
 }

@@ -1,3 +1,28 @@
+<div *ngIf="showCardMode" class="cardMode">
+  <div class="firstRow">Modos de Carta</div>
+
+  <div class="secondRow">
+    <div 
+      *ngFor="let cardMode of selectedCardMode | keyvalue"
+      onkeypress
+      (click)="changeCardMode(cardMode.key)"
+      [ngClass]="{'changeCardBackground': cardMode.value}"
+      class="cardModeOption"
+    >
+      <img height="30" src="assets/images/{{cardMode.key}}.png" alt="{{cardMode.key}}">
+    </div>
+  </div>
+
+  <div class="thirdRow">
+    <div 
+      *ngFor="let number of numbers"
+      class="cardModeNumbers"
+    >
+      {{ number }}
+    </div>
+  </div>
+</div>
+
 <div class="poker-table-container">
   
     <div class="table-space">

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
@@ -27,25 +26,61 @@ export class SpectatorComponent implements OnInit {
   average: number = 0;
   uniqueNumbers: { [key: number]: number } = {};
   uniqueNumbersLength: number = 0;
+  selectedCardMode: {[key: string]: boolean} = {
+    'F': true,
+    'A': false,
+    'P': false
+  };
+  showCardMode: boolean = true;
 
   constructor(
     private readonly gameService: GameService, 
-    private readonly authService: AuthService, 
-    private readonly modalService: ModalService,
-    private readonly router: Router
+    private readonly authService: AuthService,
   ) {}
+
+  public changeCardMode(cardMode: string): void {
+    // calculate numbers
+    this.numbers = [];
+
+    if (cardMode == 'F') { // 10 numeros de fibonacci
+      this.numbers = [0, 1, 3, 5, 8, 13, 21, 34, 55, 89];
+
+    } else if (cardMode == 'P') { // 10 numeros potencia
+      this.numbers = [0, 1, 4, 9, 16, 25, 36, 49, 64, 81];
+
+    } else { // 10 numeros aleatorios diferentes (no se pueden repetir)      
+      const uniqueNumbers = new Set<number>();
+      while (uniqueNumbers.size < 10) {
+        uniqueNumbers.add(Math.floor(Math.random() * 99) + 1);
+      }
+      this.numbers = Array.from(uniqueNumbers);
+      // ordenar los 10 numeros de menor a mayor
+      this.numbers.sort((a, b) => a - b);
+    }
+    
+    // changeStyles
+    for (const key in this.selectedCardMode) {
+      this.selectedCardMode[key] = false;
+    }
+    this.selectedCardMode[cardMode] = true;
+    
+    if (this.currentShowButton === true) {
+      
+      this.currentShowButton = false;
+      this.currentChangeCardBackground = false;
+
+      setTimeout(() => {
+        this.currentShowButton = true;
+        this.currentChangeCardBackground = true;
+      }, 2000);
+    }
+  }
 
   public generateNumbers(): void {
     this.currentShowButton = false;
     this.currentGenerateNumbers = true;
-
-    // 10 numeros aleatorios diferentes (no se pueden repetir)
-    const uniqueNumbers = new Set<number>();
-    while (uniqueNumbers.size < 10) {
-      uniqueNumbers.add(Math.floor(Math.random() * 99) + 1);
-    }
-    this.numbers = Array.from(uniqueNumbers);
-
+    this.showCardMode = false;
+    
     // 7 números aleatorios de los 10 generados (se pueden repetir)
     this.selectedNumbers = [];
     for (let i = 0; i < 7; i++) {
@@ -57,6 +92,7 @@ export class SpectatorComponent implements OnInit {
     this.average = this.selectedNumbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / this.selectedNumbers.length;
 
     // contar numeros repetidos de los 7 numeros aleatorios
+    this.uniqueNumbers = {};
     this.selectedNumbers.forEach(number => {
       this.uniqueNumbers[number] = (this.uniqueNumbers[number] || 0) + 1;
     });
@@ -70,13 +106,11 @@ export class SpectatorComponent implements OnInit {
   }
 
   public nuevaVotacion(): void {
+    this.showCardMode = true;
     this.currentShowSelectedNumbers = false;
-    setTimeout(() => {
-      this.gameService.changeShowPlayerElements(false)
-      this.gameService.changeShowSpectatorElements(false)
-      this.modalService.changeShowModal(true);
-      this.router.navigate(['/game-table']);
-    }, 1000);
+
+    this.changeCardBackground();
+    this.changeCardMode('F')
   }
 
   public chargeElements(): void {
@@ -92,24 +126,13 @@ export class SpectatorComponent implements OnInit {
     }, 2000);
   }
 
-  public generateUsers(): void {
-    this.userPermission = {
-      'Carlos': false,
-      'David': false,
-      'Nata': false,
-      'Vale': false,
-      'Pedro': false,
-      'Oscar': false,
-      'Albert': false,
-      currentUserName: true,
-    }
-  }
-
   public makeAdmin(user: string): void {
     this.userPermission[user] = true;
   }
 
   ngOnInit() {
+    this.changeCardMode('F')
+
     this.gameService.currentShowSpectatorElements.subscribe(showSpectatorElements => {
       this.currentShowSpectatorElements = showSpectatorElements;
     });
@@ -121,6 +144,17 @@ export class SpectatorComponent implements OnInit {
 
     this.chargeElements()
     this.changeCardBackground()
+
+    this.userPermission = {
+      'Carlos': false,
+      'David': false,
+      'Nata': false,
+      'Vale': false,
+      'Pedro': false,
+      'Oscar': false,
+      'Albert': false,
+      currentUserName: true,
+    }
   }
 
 }

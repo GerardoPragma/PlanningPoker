@@ -2,6 +2,31 @@
   <span>{{ currentUserName }} acaba de elegir una carta</span>
 </div>
 
+<div *ngIf="showCardMode" class="cardMode">
+  <div class="firstRow">Modos de Carta</div>
+
+  <div class="secondRow">
+    <div 
+      *ngFor="let cardMode of selectedCardMode | keyvalue"
+      onkeypress
+      (click)="generateNumbers(cardMode.key)"
+      [ngClass]="{'changeCardBackground': cardMode.value}"
+      class="cardModeOption"
+    >
+      <img height="30" src="assets/images/{{cardMode.key}}.png" alt="{{cardMode.key}}">
+    </div>
+  </div>
+
+  <div class="thirdRow">
+    <div 
+      *ngFor="let number of numbers"
+      class="cardModeNumbers"
+    >
+      {{ number }}
+    </div>
+  </div>
+</div>
+
 <div class="poker-table-container">
   
     <div class="table-space">
@@ -171,7 +196,10 @@
               </div>
             </div>
       
-            <div class="card">
+            <div
+              onkeypress
+              (click)="makeAdmin(currentUserName)" 
+              class="card">
               <div class="center-c-elements">
                 <div 
                   class="card__image"
@@ -181,7 +209,7 @@
                     {{ selectedNumbers[0] }}
                   </div>
                 </div>
-                <div 
+                <div                   
                   [ngClass]="{'makeAdmin': userPermission[currentUserName]}" 
                   class="card__text">
                     {{ currentUserName }}
@@ -259,20 +287,20 @@
         <div class="player-card-column">
 
           <div 
-            *ngFor="let cardNumber of selectedCard | keyvalue"
+            *ngFor="let cardNumber of numbers"
             class="player-card"
-            [ngStyle]="{'transform': cardNumber.value ? 'translateY(-5px)' : ''}"
+            [ngStyle]="{'transform': selectedCard[cardNumber] ? 'translateY(-5px)' : ''}"
           >
             <div
               onkeypress 
               class="player-card__image" 
-              (click)="selectCard(+cardNumber.key)"
-              [ngClass]="{'changeCardSelected': cardNumber.value}"
+              (click)="selectCard(cardNumber)"
+              [ngClass]="{'changeCardSelected': selectedCard[cardNumber]}"
             >
               <div               
-                [ngClass]="{'changeCardSelectedColor': cardNumber.value}"
+                [ngClass]="{'changeCardSelectedColor': selectedCard[cardNumber]}"
                 class="player-card__text">
-                  {{ +cardNumber.key }}
+                  {{ cardNumber }}
               </div>
             </div>
             <div class="player-card__text"></div>

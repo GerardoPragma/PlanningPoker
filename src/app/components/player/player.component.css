@@ -148,6 +148,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2px;
   }
 
   .card__image {
@@ -335,21 +336,6 @@
     transform: rotate(180deg);
   }
 
-  /* Changes */
-  .changeCardBackground {
-    background-color: #BB65FF;
-  }
-
-  .changeCardSelected {
-    border: none;
-    background-color: #E3A4FF;
-    box-shadow: 0 0 5px #531DBC;
-  }
-
-  .changeCardSelectedColor {
-    color: #330072;
-  }
-
   /* Toast message */
   .toast {
     position: fixed;
@@ -375,4 +361,95 @@
     100% {
       transform: translateX(-15px);
     }
+  }
+
+  /* Card Mode */
+  .cardMode {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2A0F52;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #531DBC;
+    transition: opacity 0.3s ease-in-out;
+    font-family: 'MyCustomFont', sans-serif;
+    font-size: 12px;
+
+    display: grid;
+    grid-template-rows: auto 50px auto;
+    gap: 10px;
+  }
+
+  .firstRow {
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .secondRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 10px;
+  }
+  
+  .secondRow span {
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .secondRow span:hover {
+    background-color: #f0f0f0;
+  }
+
+  .cardModeOption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px #531DBC;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #6429CD;
+    cursor: pointer;
+  }
+
+  .cardModeOption:hover {
+    background-color: #E3A4FF;
+  }
+  
+  .thirdRow {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 3px;
+  }
+  
+  .cardModeNumbers {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid #A15FD9;
+    border-radius: 4px;
+    font-weight: bold;
+    height: 25px;
+    font-size: 9px;
+  }
+
+  /* Changes */
+  .changeCardBackground {
+    background-color: #BB65FF;
+  }
+
+  .changeCardSelected {
+    border: none;
+    background-color: #E3A4FF;
+    box-shadow: 0 0 5px #531DBC;
+  }
+
+  .changeCardSelectedColor {
+    color: #330072;
   }
