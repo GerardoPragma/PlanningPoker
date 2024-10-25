@@ -12,6 +12,7 @@ import { GameTableComponent } from './components/game-table/game-table.component
 
 import { NavbarModule } from './components/navbar/navbar.module';
 import { SharedModule } from './shared/shared.module';
+import { CognitoComponent } from './components/cognito/cognito.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
     SpectatorComponent,
     PlayerComponent,
     GameTableComponent,
+    CognitoComponent,
   ],
   imports: [
     BrowserModule,

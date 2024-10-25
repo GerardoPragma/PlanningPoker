@@ -5,7 +5,7 @@
     height: 100vh;
   }
 
-form {
+  form {
     display: grid;
     flex-direction: column;
     align-items: center;
@@ -13,37 +13,27 @@ form {
     grid-template-columns: 1fr;
     gap: 5px;
   }
-  
-  label {
-    text-align: left;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    font-family: 'MyCustomFont', sans-serif;
-  }
-  
-  input {
-    padding: 8px;
-    border: 1px solid #6429CD;
-    border-radius: 30px;
-    width: 220px;
+
+input {
+    padding: 5px 15px;
+    height: 3rem;
+    min-height: fit-content;
+    min-width: fit-content;
+    border-radius: 100px;
+    border: 1px solid #ba64fd;
     background-color: transparent;
-    margin-bottom: 10px;
-    font-family: 'MyCustomFont', sans-serif;
     color: white;
-  }
-
-  input:focus {
-    outline: 0;
-    box-shadow: 0;
-  }
-
-  .formButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    font-size: 16px;
+    outline: none;
   
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px #370578 inset;
+      -webkit-text-fill-color: white;
+      font-family: inherit !important;
+      font-size: inherit !important;
+    }
+  }
+
   button {
     padding: 8px 20px 8px 20px;
     text-align: center;
@@ -58,10 +48,4 @@ form {
     font-family: 'MyCustomFont', sans-serif;
     color: #330072;
     font-weight: bold;
-  }
-
-  button[disabled] {
-    color: rgb(140, 140, 140);
-    font-weight: bold;
-    cursor: not-allowed;
   }

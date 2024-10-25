@@ -19,7 +19,7 @@ export class AppComponent {
   public takeOffLoadingPage(): void {
     setTimeout(() => {
       this.gameService.changeShowLogoAndCrearPartida(true);
-      this.router.navigate(['/create-game']);
+      this.router.navigate(['/authentication']);
     }, 2000);
   }
 

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
-import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-spectator',

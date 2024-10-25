@@ -1,16 +1,23 @@
+.circular-element,
+.modal-body,
+.formm {
+  display: flex;
+  align-items: center;
+}
+
 .navbar {
+  display: grid;
+  align-items: center;
   position: fixed;
   width: 100%;
   background-color: transparent;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Repetir la columna 3 veces para mejor legibilidad */
-  align-items: center;
-  gap: 1rem; /* Espacio entre elementos */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   padding-top: 30px;
 }
 
 .grid-container {
-  width: 100%; /* Asegurarse que ocupe todo el ancho del navbar */
+  width: 100%;
 }
 
 .logo {
@@ -18,18 +25,16 @@
   display: none;
   align-items: center;
 }
-  
-.text1 {
+
+.text1,.text2 {
   font-weight: bold;
   font-family: 'MyCustomFont', sans-serif;
   color: white;
+}
+.text1 {
   margin-left: 10px;
 }
-
 .text2 {
-  font-weight: bold;
-  font-family: 'MyCustomFont', sans-serif;
-  color: white;
   text-align: center;
 }
 
@@ -45,12 +50,10 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #BDBDFF; /* Change the background color as needed */
-  display: flex;
+  background-color: #BDBDFF;
   justify-content: center;
-  align-items: center;
   font-size: 14px;
-  margin-right: 10px; /* Adjust the margin as needed */
+  margin-right: 10px;
   right: 80px;
   position: relative;
   cursor: pointer;
@@ -75,16 +78,16 @@
 
   @media (max-width: 768px) {
     .navbar {
-      grid-template-columns: 1fr; /* Una sola columna para pantallas pequeñas */
-      justify-items: center; /* Centrar los elementos */
+      grid-template-columns: 1fr;
+      justify-items: center;
     }
   
     .logo {
-      text-align: center; /* Centrar el logo */
+      text-align: center;
     }
   
     .invitePlayer {
-      justify-content: center; /* Centrar el botón */
+      justify-content: center;
     }
   }
 
@@ -152,17 +155,13 @@
   }
   
   .modal-body {
-    display: flex;
-    align-items: center;
     flex-direction: column;
     padding: 25px;
   }
   
   .formm {
-    display: flex;
     flex-direction: column;
     width: 96%;
-    align-items: center;
     gap: 12px;
   }
   

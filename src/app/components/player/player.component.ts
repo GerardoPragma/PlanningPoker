@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
-  styleUrl: './player.component.css'
+  styleUrls: ['./player.component.css', './other.component.css']
 })
 export class PlayerComponent implements OnInit {
   currentShowPlayerElements: boolean = false;

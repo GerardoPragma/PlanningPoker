@@ -1,0 +1,45 @@
+{
+  "auth": {
+    "planningpoker8f81e7c3": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_planningpoker8f81e7c3_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "planningpoker8f81e7c3"
+        }
+      ]
+    },
+    "AMPLIFY_auth_planningpoker8f81e7c3_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "planningpoker8f81e7c3"
+        }
+      ]
+    },
+    "AMPLIFY_auth_planningpoker8f81e7c3_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "planningpoker8f81e7c3"
+        }
+      ]
+    },
+    "AMPLIFY_auth_planningpoker8f81e7c3_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "planningpoker8f81e7c3"
+        }
+      ]
+    }
+  }
+}

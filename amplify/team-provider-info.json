@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-planningpoker-dev-d0336-authRole",
+      "UnauthRoleArn": "arn:aws:iam::585768184707:role/amplify-planningpoker-dev-d0336-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::585768184707:role/amplify-planningpoker-dev-d0336-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-planningpoker-dev-d0336-deployment",
+      "UnauthRoleName": "amplify-planningpoker-dev-d0336-unauthRole",
+      "StackName": "amplify-planningpoker-dev-d0336",
+      "StackId": "arn:aws:cloudformation:us-east-2:585768184707:stack/amplify-planningpoker-dev-d0336/b6fbfae0-8fbe-11ef-be91-0af7e0b802dd",
+      "AmplifyAppId": "d3d7ju2lfhy9wy"
+    },
+    "categories": {
+      "auth": {
+        "planningpoker8f81e7c3": {
+          "userPoolId": "us-east-2_jrpzAh8Eq",
+          "userPoolName": "planningpoker-gerardo",
+          "webClientId": "7sm8jpktg31cqmhh7pmjpv7l12",
+          "nativeClientId": "7sm8jpktg31cqmhh7pmjpv7l12"
+        }
+      }
+    }
+  }
+}

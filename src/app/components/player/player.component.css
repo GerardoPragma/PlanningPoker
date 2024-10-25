@@ -1,455 +1,300 @@
+.poker-table-container,
+.loader,
+.card,
+.card__image,
+.center-c-elements,
+.circular-element,
+.table-space,
+.voting-card__image,
+.cardModeOption,
+.cardModeNumbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.show-cards-button,
+.count_text,
+.circular-element {
+  font-family: 'MyCustomFont', sans-serif;
+  text-align: center;
+}
+.grid-container,
+.voting-container,
+.voting-average,
+.player-grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.card__image,
+.voting-card__image,
+.player-card__image,
+.cardModeNumbers {
+  background-color: transparent;
+  border-radius: 4.5px;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+.card__text,
+.voting-card__text,
+.voting-card__average,
+.cardMode,
+.player-text-column,
+.player-card__text,
+.toast {
+  font-family: 'MyCustomFont', sans-serif;
+  color: white;
+}
+.show-cards-button,
+.cardModeOption {
+  background-color: #6429CD;
+  cursor: pointer;
+}
+.voting-card-column,
+.cardMode,
+.secondRow,
+.player-card-column {
+  display: grid;
+  gap: 10px;
+}
+.toast,
+.cardMode,
+.changeCardSelected {
+  box-shadow: 0 0 5px #531DBC;
+}
+.grid-container,
+.voting-container,
+.player-grid-container {
+  gap: 20px;
+  grid-template-rows: auto;
+}
+.toast,
+.cardMode {
+  position: fixed;
+  bottom: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 12px;
+  background-color: #2A0F52;
+}
+.voting-card,
+.player-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-column,
+.secondRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
 .poker-table-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+  height: 100vh;
+  flex-direction: column;
+}  
+.poker-table {
+  position: relative;
+  width: 550px;
+  height: 300px;
+  border-radius: 300px;
+}
+
+.outer-border, .middle-border, .inner-border {
+  position: absolute;
+  border-radius: inherit;
+  box-sizing: border-box;
+  border-style: solid;
+  box-shadow: 0 0 2px #6429CD;
+  border-width: 2px;
+}  
+.outer-border {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-color: #6E3FCB;
+}
+.middle-border,.inner-border,.center-button {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.middle-border {
+  width: 87%;
+  height: 87%;
+  border-color: #8D6FE0;
+}
+.inner-border {
+  width: 80%;
+  height: 80%;
+  border-color: #471C8E;
+  background-color: #2A0F52;
+}
+.show-cards-button {
+  padding: 8px 20px 8px 20px;
+  border: none;
+  border-radius: 30px;
+  color: white;
+}
+.center-button {
+  position: absolute;
+}
+
+.loader .dot:nth-child(1) { --i: 0; }
+.loader .dot:nth-child(2) { --i: 1; }
+.loader .dot:nth-child(3) { --i: 2; }
+.loader .dot:nth-child(4) { --i: 3; }
+.dot {
+  width: 16px;
+  height: 16px;
+  border: 5px solid #6b26cb;
+  background-color: transparent;
+  border-radius: 50%;
+  margin: 10px 5px;
+  animation: bounce 1s infinite alternate;
+  animation-delay: calc(0.1s * var(--i));
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0px);
   }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+.count_text {
+  color: white;
+  font-size: 12px;
+}
+
+/* Tarjetas */
+.grid-container {
+  width: 60%;
+}
+.card {
+  flex-direction: column;
+  gap: 2px;
+}
+.card__image {
+  width: 25px;
+  height: 45px;
+  border: 1px solid #7e5fc9;
+}
+.card-left,
+.card-right,
+.center-c-elements,
+.player-card__image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card-left {
+  align-items: flex-end;
+}
+.card-right {
+  align-items: flex-start;    
+}
+.card__text {
+  font-size: 11px;
+  padding: 0px 4px;
+}
+.circular-element {
+  color: #330072;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #BDBDFF;
+  font-size: 14px;
+  position: relative;
+}
+
+.table-space {
+  flex-grow: 1;
+  padding-top: 127px;
+}
   
-  .poker-table {
-    position: relative;
-    width: 550px;
-    height: 300px;
-    border-radius: 300px;
-  }
-  
-  .table-felt {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-  }
-  
-  .outer-border, .middle-border, .inner-border {
-    position: absolute;
-    border-radius: inherit;
-    box-sizing: border-box;
-    border-style: solid; /* Asegurarse que todos los bordes sean sólidos */
-  }
-  
-  .outer-border {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-width: 2px;
-    border-color: #6E3FCB;
-    box-shadow: 0 0 2px #6429CD;
-  }
-  
-  .middle-border {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 87%;
-    height: 87%;
-    border-width: 2px;
-    border-color: #8D6FE0;
-    box-shadow: 0 0 2px #6429CD;
-  }
-  
-  .inner-border {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    border-width: 2px;
-    border-color: #471C8E;
-    background-color: #2A0F52;
-    box-shadow: 0 0 2px #6429CD;
-  }
+/* Voting Cards */
+.voting-card-column {
+  height: 132px;
+}
+.voting-card {
+  padding-top: 20px;
+}
+.voting-card__image {
+  width: 35px;
+  height: 60px;
+  border: 2px solid #7A56B9;
+}
+.voting-card__text {
+  font-size: 12px;
+}
+.voting-average {
+  grid-template-rows: auto 1fr;
+  padding-left: 60px;
+  padding-top: 20px;
+}
+.voting-card__average {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+}
 
-  @media (max-height: 724px) {
-    .poker-table {
-      height: 250px;
-      width: 460px;
-    }
-  }
+/* Player Cards */
+.player-grid-container {
+  padding-bottom: 25px;
+}
+.player-text-column {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+.player-card-column {
+  grid-template-columns: repeat(12, 1fr);
+}
+.player-card {
+  cursor: pointer;
+}
+.player-card__image {
+  align-items: center;
+  width: 35px;
+  height: 60px;
+  border: 2px solid #A15FD9;
+}
+.player-card__text {
+  font-size: 14px;
+}
+.rotarImg {
+  transform: rotate(180deg);
+}
 
-  .show-cards-button {
-    padding: 8px 20px 8px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    width: fit-content;
-    font-family: 'MyCustomFont', sans-serif;
-    color: white;
-    background-color: #6429CD;
-  }
-  
-  .center-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .loader .dot:nth-child(1) { --i: 0; }
-  .loader .dot:nth-child(2) { --i: 1; }
-  .loader .dot:nth-child(3) { --i: 2; }
-  .loader .dot:nth-child(4) { --i: 3; }
-  
-  .dot {
-    width: 16px;
-    height: 16px;
-    border: 5px solid #6b26cb;
-    background-color: transparent;
-    border-radius: 50%;
-    margin: 10px 5px;
-    animation: bounce 1s infinite alternate;
-    animation-delay: calc(0.1s * var(--i));
-  }
-  
-  @keyframes bounce {
-    0% {
-      transform: translateY(0px);
-    }
-    100% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .count_text {
-    font-family: 'MyCustomFont', sans-serif;
-    color: white;
-    font-size: 12px;
-    text-align: center;
-  }
-
-  /* tarjetas */
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr; /* Adjust column widths as needed */
-    gap: 20px; /* Adjust gap between columns */
-    grid-template-rows: auto; /* Permite que las filas se ajusten al contenido */
-    width: 60%;
-  }
-  
-  .card-column {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-  }
-
-  .card__image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25px; /* Ajusta el ancho de la imagen */
-    height: 45px; /* Ajusta la altura de la imagen */
-    background-color: transparent; /* Color de fondo por defecto si no hay imagen */
-    border: 1px solid #7e5fc9;
-    border-radius: 4.5px;
-    margin-bottom: 2px;
-    font-weight: bold;
-  }
-
-  .card-left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    text-align: end;
-  }
-
-  .card-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  .center-c-elements {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .card__text {
-    font-family: 'MyCustomFont', sans-serif;
-    color: white;
-    font-size: 11px;
-    padding: 0px 4px;
-  }
-
-  .circular-element {
-    color: #330072;
-    font-weight: bold;
-    font-family: 'MyCustomFont', sans-serif;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #BDBDFF; /* Change the background color as needed */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    position: relative;
-  }
-
-  .hidden {
-    visibility: hidden;
-  }
-
-  .table-space {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 127px;
-  }
-
-  .makeAdmin {
-    color: black !important;
-    border-radius: 5px;
-    background-color: #ffc400;
-  }
-  
-  /* -------------- Voting Cards -------------- */
-  .voting-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-  
-  .voting-card-column {
-    display: grid;
-    height: 132px;
-    gap: 10px;
-  }
-  
-  .voting-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-  }
-  
-  .voting-card__image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 60px;
-    background-color: transparent;
-    border: 2px solid #7A56B9;
-    border-radius: 4.5px;
-    margin-bottom: 2px;
-    font-weight: bold;
-  }
-  
-  .voting-card__text {
-    font-family: 'MyCustomFont', sans-serif;
-    color: white;
-    font-size: 12px;
-  }
-
-  .voting-average {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    align-items: baseline;
-    padding-left: 60px;
-    padding-top: 20px;
-  }
-
-  .voting-card__average {
-    display: flex;
-    justify-content: center;
-    font-family: 'MyCustomFont', sans-serif;
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-  }
-
-  /* -------------- Player Cards -------------- */
-  .player-grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    grid-template-rows: auto;
-    padding-bottom: 25px;
-  }
-
-  .player-text-column {
-    font-weight: bold;
-    font-family: 'MyCustomFont', sans-serif;
-    color: white;
-    font-size: 16px;
-    text-align: center;
-  }
-
-  .player-card-column {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 10px;
-  }
-  
-  .player-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .player-card__image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px; /* Ajusta el ancho de la imagen */
-    height: 60px; /* Ajusta la altura de la imagen */
-    background-color: transparent; /* Color de fondo por defecto si no hay imagen */
-    border: 2px solid #A15FD9;
-    border-radius: 4.5px;
-    margin-bottom: 2px;
-    font-weight: bold;
-  }
-  
-  .player-card__text {
-    font-family: 'MyCustomFont', sans-serif;
-    color: white;
-    font-size: 14px;
-  }
-
-  .rotarImg {
-    transform: rotate(180deg);
-  }
-
-  /* Toast message */
-  .toast {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #2A0F52;
-    color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #531DBC;
-    transition: opacity 0.3s ease-in-out;
-    font-family: 'MyCustomFont', sans-serif;
-    font-size: 12px;
-    /* Animación de entrada */
-    animation: bounce2 1s infinite alternate;
-    animation-delay: calc(0.2s * var(--i));
-  }
-  
-  @keyframes bounce2 {
-    0% {
-      transform: translateX(0px);
-    }
-    100% {
-      transform: translateX(-15px);
-    }
-  }
-
-  /* Card Mode */
-  .cardMode {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #2A0F52;
-    color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #531DBC;
-    transition: opacity 0.3s ease-in-out;
-    font-family: 'MyCustomFont', sans-serif;
-    font-size: 12px;
-
-    display: grid;
-    grid-template-rows: auto 50px auto;
-    gap: 10px;
-  }
-
-  .firstRow {
-    font-size: 24px;
-    text-align: center;
-  }
-  
-  .secondRow {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    gap: 10px;
-  }
-  
-  .secondRow span {
-    padding: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-  }
-  
-  .secondRow span:hover {
-    background-color: #f0f0f0;
-  }
-
-  .cardModeOption {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 10px #531DBC;
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
-    background-color: #6429CD;
-    cursor: pointer;
-  }
-
-  .cardModeOption:hover {
-    background-color: #E3A4FF;
-  }
-  
-  .thirdRow {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 3px;
-  }
-  
-  .cardModeNumbers {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    border: 1px solid #A15FD9;
-    border-radius: 4px;
-    font-weight: bold;
-    height: 25px;
-    font-size: 9px;
-  }
-
-  /* Changes */
-  .changeCardBackground {
-    background-color: #BB65FF;
-  }
-
-  .changeCardSelected {
-    border: none;
-    background-color: #E3A4FF;
-    box-shadow: 0 0 5px #531DBC;
-  }
-
-  .changeCardSelectedColor {
-    color: #330072;
-  }
+/* Card Mode */
+.cardMode {
+  right: 20px;
+}
+.firstRow {
+  font-size: 24px;
+  text-align: center;
+}
+.cardModeOption {
+  box-shadow: 0 0 10px #531DBC;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+}
+.cardModeOption:hover {
+  background-color: #E3A4FF;
+}  
+.thirdRow {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 3px;
+}  
+.cardModeNumbers {
+  text-align: center;
+  border: 1px solid #A15FD9;
+  height: 25px;
+  font-size: 9px;
+}

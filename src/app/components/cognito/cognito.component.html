@@ -1,0 +1,70 @@
+<div class="container">
+    @if (needConfirmation) {
+    <form [formGroup]="codeForm"
+      (ngSubmit)="confirmCreatedUser()"
+    >
+      <h4 class="col-12 my-3 d-flex justify-content-center">
+        Enter verification code sent to your email
+      </h4>
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <label class="col-1 mb-1 d-flex justify-content-center" for="code"
+          >Code:</label
+        >
+        <input formControlName="verificationCode" type="text"
+          (InputChange)="onCodeChange($event)"
+        />
+      </div>
+      <button type="submit">
+        Verify
+      </button>
+    </form>
+    <div class="col-1 mt-3 d-flex justify-content-center"></div>
+    } 
+    
+    @if(!needConfirmation) {
+    <form
+      [formGroup]="userForm"
+      (ngSubmit)="isLogin ? validateUser() : createUser()"
+      class="row d-flex justify-content-center"
+    >
+      <h1 class="col-12 my-3 d-flex justify-content-center">{{ title }}</h1>
+      <p *ngIf="regexMessage" class="col-12 d-flex justify-content-center">
+        {{ regexMessage }}
+      </p>
+      @if (!isLogin) {
+      <div class="row my-1 col-7 align-items-center justify-content-center">
+        <label class="col-1 d-flex justify-content-end" for="tbUsername"
+          >Username</label
+        >
+        <input formControlName="userUsername" type="text"
+          (InputChange)="onUsernameChange($event)"
+        />
+      </div>
+      }
+      <div class="row my-1 col-7 align-items-center justify-content-center">
+        <label class="col-1 d-flex justify-content-end" for="tbEmail"
+          >Email</label
+        >
+        <input formControlName="userEmail" type="email"
+          (InputChange)="onEmailChange($event)"
+        />
+      </div>
+      <div class="row my-1 col-7 align-items-center justify-content-center">
+        <label class="col-1 d-flex justify-content-end" for="tbPassword"
+          >Password</label
+        >
+        <input formControlName="userPassword" type="password"
+          (InputChange)="onPasswordChange($event)"
+        />
+      </div>
+      <div>
+        <button type="submit">
+            <span *ngIf="isLogin" class="text1">Login</span>
+            <span *ngIf="!isLogin" class="text1">Register</span>
+        </button>
+      </div>
+      <a *ngIf="!isLogin" routerLink="/login">Login</a>
+    </form>
+    }
+    <a *ngIf="isLogin" routerLink="/register">Register</a>
+</div>

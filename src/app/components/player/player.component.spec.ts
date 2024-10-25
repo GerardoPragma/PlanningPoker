@@ -1,32 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PlayerComponent } from './player.component';
-import { GameService } from '../../services/game.service';
-import { ModalService } from '../../services/modal.service';
-import { Router } from '@angular/router'; 
 
 describe('PlayerComponent', () => {
   let component: PlayerComponent;
   let fixture: ComponentFixture<PlayerComponent>;
-  let gameService: GameService;
-  let modalService: ModalService;
-  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PlayerComponent],
-      providers: [
-        GameService,
-        ModalService,
-        { provide: Router, useValue: { navigate: jest.fn() } },
-      ],
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(PlayerComponent);
     component = fixture.componentInstance;
-    gameService = TestBed.inject(GameService);
-    modalService = TestBed.inject(ModalService);
-    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
